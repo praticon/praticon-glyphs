@@ -5,4 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   base: "/praticon-glyphs/",
   plugins: [react()],
+  // Bundle the workspace packages into the SSR build so the pre-render step
+  // can run it in plain Node (they import JSON, which Node needs flagged).
+  ssr: { noExternal: [/^@praticon-glyphs\//] },
 });
