@@ -89,7 +89,7 @@ Every icon also gets an entry in `metadata.json`:
 ```json
 {
   "name": "arrow-left",
-  "category": "arrows",
+  "category": "core-ui",
   "tags": ["back", "previous", "direction"],
   "aliases": ["chevron-back"],
   "tier": "free",

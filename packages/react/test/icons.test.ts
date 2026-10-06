@@ -66,6 +66,12 @@ describe("@praticon-glyphs/react", () => {
     expect(html).not.toContain("aria-hidden");
   });
 
+  it("stays hidden when the label is empty", () => {
+    const html = render(createElement(ArrowLeft, { "aria-label": "" }));
+    expect(html).toContain('aria-hidden="true"');
+    expect(html).not.toContain("role=");
+  });
+
   it("renders children such as <title>", () => {
     const html = render(createElement(ArrowLeft, { "aria-labelledby": "t" }, createElement("title", { id: "t" }, "Back")));
     expect(html).toContain('<title id="t">Back</title>');

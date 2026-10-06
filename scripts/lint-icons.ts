@@ -28,7 +28,8 @@ const ALLOWED_ATTRS: Record<string, string[]> = {
   polygon: ["points"],
 };
 
-const NAME_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+/** Starts with a letter so the generated component name is a valid identifier. */
+const NAME_RE = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
 const SEMVER_RE = /^\d+\.\d+\.\d+$/;
 /** Live area is 2–22; allow 1px of optical overshoot. */
 const MIN = 1;
@@ -89,7 +90,9 @@ const report = (name: string, message: string) => errors.push(`${name}: ${messag
 
 const names = listSvgNames(SOURCE_DIR);
 for (const name of names) {
-  if (!NAME_RE.test(name)) report(name, "file name must be kebab-case");
+  if (!NAME_RE.test(name)) report(name, "file name must be kebab-case and start with a letter");
+  // `foo-icon` would export `FooIcon`, which is already the alias of `foo`.
+  if (name.endsWith("-icon")) report(name, `file name must not end in "-icon"`);
 
   let svg;
   try {

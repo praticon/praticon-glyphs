@@ -40,4 +40,26 @@ describe("@praticon-glyphs/core", () => {
   it("throws on unknown icons", () => {
     expect(() => toSvg("nope" as IconName)).toThrow(/Unknown Praticon icon/);
   });
+
+  it("does not treat inherited object properties as icons", () => {
+    expect(() => toSvg("toString" as IconName)).toThrow(/Unknown Praticon icon/);
+    expect(() => toSvg("constructor" as IconName)).toThrow(/Unknown Praticon icon/);
+  });
+
+  it("becomes role=img when labelled", () => {
+    const svg = toSvg("check", { attrs: { "aria-label": "Done" } });
+    expect(svg).toContain('role="img"');
+    expect(svg).toContain('aria-label="Done"');
+    expect(svg).not.toContain("aria-hidden");
+  });
+
+  it("stays hidden when the label is empty", () => {
+    const svg = toSvg("check", { attrs: { "aria-label": "" } });
+    expect(svg).toContain('aria-hidden="true"');
+    expect(svg).not.toContain("role=");
+  });
+
+  it("rejects invalid attribute names", () => {
+    expect(() => toSvg("check", { attrs: { 'x" onload="alert(1)': "" } })).toThrow(/Invalid SVG attribute name/);
+  });
 });

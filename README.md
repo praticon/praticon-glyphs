@@ -46,6 +46,8 @@ import { toSvg, metadata } from "@praticon-glyphs/core";
 document.querySelector("#back").innerHTML = toSvg("arrow-left", { size: 20 });
 ```
 
+As with the React components, `toSvg` output is decorative (`aria-hidden="true"`) unless you pass `attrs: { "aria-label": "…" }`, which makes it `role="img"`. Unknown icon names and invalid attribute names throw.
+
 The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 
 ## Packages

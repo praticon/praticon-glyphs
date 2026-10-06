@@ -28,7 +28,7 @@ export function createIcon(name: string, node: IconNode): PraticonIcon {
     ref,
   ) {
     // Decorative by default; becomes an image with an accessible name when labelled.
-    const labelled = rest["aria-label"] != null || rest["aria-labelledby"] != null;
+    const labelled = Boolean(rest["aria-label"] || rest["aria-labelledby"]);
     return createElement(
       "svg",
       {
