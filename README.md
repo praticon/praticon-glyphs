@@ -2,7 +2,7 @@
 
 **Symbols, crafted.** A grid-based SVG icon library for web development.
 
-- 50 icons today (Core UI, Code & editor, Browser & web), growing to ~200 free icons
+- 200 icons across 10 categories: Core UI, Code & editor, Browser & web, Layout & CSS, Devices, Version control, APIs & data, Build & deploy, Testing, and Security & speed
 - Drawn on a 24×24 grid with a 2px round stroke, legible at 16px
 - `currentColor` everywhere, so icons inherit your text colour
 - Typed, tree-shakeable components for React, Vue and Svelte: you ship only the icons you import

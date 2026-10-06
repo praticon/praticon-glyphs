@@ -10,6 +10,13 @@ export const CATEGORY_LABELS: Record<IconCategory, string> = {
   "core-ui": "Core UI",
   code: "Code & editor",
   browser: "Browser & web",
+  layout: "Layout & CSS",
+  devices: "Devices",
+  git: "Version control",
+  data: "APIs & data",
+  deploy: "Build & deploy",
+  testing: "Testing",
+  security: "Security & speed",
 };
 
 const COLOR_PRESETS = ["#5b21b6", "#2563eb", "#059669", "#d97706", "#dc2626"];

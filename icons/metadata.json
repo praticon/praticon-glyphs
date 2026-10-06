@@ -1,5 +1,69 @@
 [
   {
+    "name": "accessibility",
+    "category": "security",
+    "tags": [
+      "a11y",
+      "inclusive",
+      "person",
+      "universal"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "activity",
+    "category": "data",
+    "tags": [
+      "pulse",
+      "monitoring",
+      "health",
+      "heartbeat"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "align-center",
+    "category": "layout",
+    "tags": [
+      "center",
+      "alignment",
+      "justify",
+      "css"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "api",
+    "category": "data",
+    "tags": [
+      "plug",
+      "integration",
+      "connect",
+      "interface"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "archive",
+    "category": "core-ui",
+    "tags": [
+      "box",
+      "storage",
+      "store away"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "arrow-down",
     "category": "core-ui",
     "tags": [
@@ -48,6 +112,55 @@
     "since": "0.1.0"
   },
   {
+    "name": "bell",
+    "category": "core-ui",
+    "tags": [
+      "notification",
+      "alert",
+      "alarm"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "bell-off",
+    "category": "core-ui",
+    "tags": [
+      "mute",
+      "silent",
+      "notifications off"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "binary",
+    "category": "code",
+    "tags": [
+      "bits",
+      "zero one",
+      "data",
+      "machine code"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "bookmark",
+    "category": "core-ui",
+    "tags": [
+      "save",
+      "favourite",
+      "read later"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "brackets",
     "category": "code",
     "tags": [
@@ -61,6 +174,32 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "breakpoint",
+    "category": "layout",
+    "tags": [
+      "responsive",
+      "media query",
+      "ruler",
+      "width"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "breakpoint-dot",
+    "category": "testing",
+    "tags": [
+      "pause",
+      "stop",
+      "gutter",
+      "debugger"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "browser",
@@ -77,6 +216,45 @@
     "since": "0.1.0"
   },
   {
+    "name": "bug",
+    "category": "testing",
+    "tags": [
+      "issue",
+      "error",
+      "defect",
+      "insect"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "build",
+    "category": "deploy",
+    "tags": [
+      "hammer",
+      "compile",
+      "make",
+      "construct"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "bundle",
+    "category": "deploy",
+    "tags": [
+      "zip",
+      "archive",
+      "compress",
+      "output"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "cache",
     "category": "browser",
     "tags": [
@@ -88,6 +266,69 @@
     "aliases": [],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "calendar",
+    "category": "core-ui",
+    "tags": [
+      "date",
+      "schedule",
+      "event"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "certificate",
+    "category": "security",
+    "tags": [
+      "ssl",
+      "tls",
+      "award",
+      "verified"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "chart-bar",
+    "category": "data",
+    "tags": [
+      "analytics",
+      "statistics",
+      "column chart"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "chart-line",
+    "category": "data",
+    "tags": [
+      "analytics",
+      "trend",
+      "graph",
+      "statistics"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "chart-pie",
+    "category": "data",
+    "tags": [
+      "analytics",
+      "share",
+      "proportion",
+      "statistics"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "check",
@@ -160,6 +401,18 @@
     "since": "0.1.0"
   },
   {
+    "name": "clock",
+    "category": "core-ui",
+    "tags": [
+      "time",
+      "hour",
+      "watch"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "close",
     "category": "core-ui",
     "tags": [
@@ -175,6 +428,32 @@
     "since": "0.1.0"
   },
   {
+    "name": "cloud",
+    "category": "deploy",
+    "tags": [
+      "hosting",
+      "remote",
+      "sky",
+      "storage"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "cloud-upload",
+    "category": "deploy",
+    "tags": [
+      "upload",
+      "sync",
+      "backup",
+      "push"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "code",
     "category": "code",
     "tags": [
@@ -186,6 +465,44 @@
     "aliases": [],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "code-review",
+    "category": "git",
+    "tags": [
+      "review",
+      "approve",
+      "feedback",
+      "pull request"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "color-picker",
+    "category": "layout",
+    "tags": [
+      "eyedropper",
+      "pipette",
+      "colour",
+      "sample"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "columns",
+    "category": "layout",
+    "tags": [
+      "layout",
+      "grid",
+      "vertical"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "comment",
@@ -200,6 +517,32 @@
     "since": "0.1.0"
   },
   {
+    "name": "condition",
+    "category": "code",
+    "tags": [
+      "if",
+      "else",
+      "branch",
+      "decision",
+      "flow"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "conflict",
+    "category": "git",
+    "tags": [
+      "merge conflict",
+      "clash",
+      "version control"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "console",
     "category": "browser",
     "tags": [
@@ -211,6 +554,19 @@
     "aliases": [],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "container",
+    "category": "deploy",
+    "tags": [
+      "docker",
+      "image",
+      "shipping",
+      "isolation"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "cookie",
@@ -240,6 +596,134 @@
     "since": "0.1.0"
   },
   {
+    "name": "coverage",
+    "category": "testing",
+    "tags": [
+      "percent",
+      "code coverage",
+      "report"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "cpu",
+    "category": "deploy",
+    "tags": [
+      "processor",
+      "chip",
+      "compute",
+      "hardware"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "cron",
+    "category": "deploy",
+    "tags": [
+      "schedule",
+      "job",
+      "recurring",
+      "timer"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "cursor-click",
+    "category": "browser",
+    "tags": [
+      "click",
+      "pointer",
+      "mouse",
+      "select"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "cursor-text",
+    "category": "code",
+    "tags": [
+      "caret",
+      "i-beam",
+      "text input",
+      "edit"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "database",
+    "category": "data",
+    "tags": [
+      "db",
+      "storage",
+      "sql",
+      "data"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "debug",
+    "category": "testing",
+    "tags": [
+      "run",
+      "debugger",
+      "start debugging"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "dependency",
+    "category": "deploy",
+    "tags": [
+      "package",
+      "requires",
+      "stack",
+      "module"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "deploy",
+    "category": "deploy",
+    "tags": [
+      "rocket",
+      "launch",
+      "ship",
+      "release"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "desktop",
+    "category": "devices",
+    "tags": [
+      "monitor",
+      "computer",
+      "screen",
+      "display"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "devtools",
     "category": "browser",
     "tags": [
@@ -252,6 +736,19 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "diff",
+    "category": "git",
+    "tags": [
+      "changes",
+      "compare",
+      "added",
+      "removed"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "download",
@@ -278,6 +775,44 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "endpoint",
+    "category": "data",
+    "tags": [
+      "route",
+      "url",
+      "target",
+      "api"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "env-variable",
+    "category": "deploy",
+    "tags": [
+      "environment",
+      "dotenv",
+      "config",
+      "secret"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "extension",
+    "category": "browser",
+    "tags": [
+      "plugin",
+      "add-on",
+      "puzzle"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "external-link",
@@ -309,6 +844,19 @@
     "since": "0.1.0"
   },
   {
+    "name": "eye-off",
+    "category": "core-ui",
+    "tags": [
+      "hide",
+      "hidden",
+      "invisible",
+      "password"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "file",
     "category": "core-ui",
     "tags": [
@@ -334,6 +882,30 @@
     "since": "0.1.0"
   },
   {
+    "name": "file-plus",
+    "category": "code",
+    "tags": [
+      "new file",
+      "create",
+      "add"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "files",
+    "category": "code",
+    "tags": [
+      "documents",
+      "copies",
+      "pages"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "filter",
     "category": "core-ui",
     "tags": [
@@ -348,6 +920,68 @@
     "since": "0.1.0"
   },
   {
+    "name": "fingerprint",
+    "category": "security",
+    "tags": [
+      "biometric",
+      "identity",
+      "touch id"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "firewall",
+    "category": "security",
+    "tags": [
+      "brick wall",
+      "network security",
+      "block"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "flag",
+    "category": "core-ui",
+    "tags": [
+      "report",
+      "mark",
+      "milestone"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "flex-column",
+    "category": "layout",
+    "tags": [
+      "flexbox",
+      "vertical",
+      "direction",
+      "css"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "flex-row",
+    "category": "layout",
+    "tags": [
+      "flexbox",
+      "horizontal",
+      "direction",
+      "css"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "folder",
     "category": "core-ui",
     "tags": [
@@ -359,6 +993,18 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "folder-open",
+    "category": "code",
+    "tags": [
+      "directory",
+      "browse",
+      "project"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "format",
@@ -390,6 +1036,68 @@
     "since": "0.1.0"
   },
   {
+    "name": "gauge",
+    "category": "security",
+    "tags": [
+      "performance",
+      "speedometer",
+      "meter",
+      "score"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "git-branch",
+    "category": "git",
+    "tags": [
+      "branch",
+      "version control",
+      "feature"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "git-commit",
+    "category": "git",
+    "tags": [
+      "commit",
+      "save",
+      "snapshot",
+      "version control"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "git-fork",
+    "category": "git",
+    "tags": [
+      "fork",
+      "copy",
+      "repository"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "git-merge",
+    "category": "git",
+    "tags": [
+      "merge",
+      "combine",
+      "version control"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "globe",
     "category": "browser",
     "tags": [
@@ -405,6 +1113,69 @@
     "since": "0.1.0"
   },
   {
+    "name": "grip",
+    "category": "core-ui",
+    "tags": [
+      "drag",
+      "handle",
+      "move",
+      "reorder"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "hash",
+    "category": "code",
+    "tags": [
+      "number",
+      "pound",
+      "anchor",
+      "id"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "heart",
+    "category": "core-ui",
+    "tags": [
+      "like",
+      "love",
+      "favourite"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "help",
+    "category": "core-ui",
+    "tags": [
+      "question",
+      "support",
+      "faq"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "history",
+    "category": "browser",
+    "tags": [
+      "recent",
+      "past",
+      "time",
+      "back"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "home",
     "category": "core-ui",
     "tags": [
@@ -417,6 +1188,31 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "image",
+    "category": "core-ui",
+    "tags": [
+      "picture",
+      "photo",
+      "media"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "inbox",
+    "category": "core-ui",
+    "tags": [
+      "tray",
+      "mail",
+      "messages",
+      "received"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "info",
@@ -446,6 +1242,95 @@
     "since": "0.1.0"
   },
   {
+    "name": "json",
+    "category": "data",
+    "tags": [
+      "object",
+      "data",
+      "braces",
+      "config"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "key",
+    "category": "security",
+    "tags": [
+      "password",
+      "access",
+      "credential",
+      "api key"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "keyboard",
+    "category": "code",
+    "tags": [
+      "keys",
+      "typing",
+      "shortcut",
+      "input"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "lambda",
+    "category": "code",
+    "tags": [
+      "function",
+      "arrow function",
+      "anonymous"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "laptop",
+    "category": "devices",
+    "tags": [
+      "computer",
+      "notebook",
+      "device"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "layers",
+    "category": "layout",
+    "tags": [
+      "stack",
+      "z-index",
+      "depth",
+      "overlay"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "layout-grid",
+    "category": "layout",
+    "tags": [
+      "bento",
+      "dashboard",
+      "tiles",
+      "masonry"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "link",
     "category": "browser",
     "tags": [
@@ -459,6 +1344,136 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "list",
+    "category": "core-ui",
+    "tags": [
+      "items",
+      "bullets",
+      "rows"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "load-balancer",
+    "category": "deploy",
+    "tags": [
+      "traffic",
+      "distribute",
+      "proxy",
+      "routing"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "lock",
+    "category": "security",
+    "tags": [
+      "secure",
+      "private",
+      "password",
+      "locked"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "log",
+    "category": "testing",
+    "tags": [
+      "logs",
+      "output",
+      "trace",
+      "history"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "log-in",
+    "category": "core-ui",
+    "tags": [
+      "sign in",
+      "enter",
+      "login"
+    ],
+    "aliases": [
+      "sign-in"
+    ],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "log-out",
+    "category": "core-ui",
+    "tags": [
+      "sign out",
+      "exit",
+      "logout"
+    ],
+    "aliases": [
+      "sign-out"
+    ],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "loop",
+    "category": "code",
+    "tags": [
+      "repeat",
+      "iterate",
+      "for",
+      "while"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "mail",
+    "category": "core-ui",
+    "tags": [
+      "email",
+      "message",
+      "envelope",
+      "inbox"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "margin",
+    "category": "layout",
+    "tags": [
+      "spacing",
+      "outset",
+      "box model",
+      "css"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "maximize",
+    "category": "core-ui",
+    "tags": [
+      "expand",
+      "fullscreen",
+      "enlarge"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "menu",
@@ -475,6 +1490,30 @@
     "since": "0.1.0"
   },
   {
+    "name": "message",
+    "category": "core-ui",
+    "tags": [
+      "chat",
+      "conversation",
+      "speech"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "minimize",
+    "category": "core-ui",
+    "tags": [
+      "collapse",
+      "shrink",
+      "exit fullscreen"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "minus",
     "category": "core-ui",
     "tags": [
@@ -487,6 +1526,31 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "mobile",
+    "category": "devices",
+    "tags": [
+      "phone",
+      "smartphone",
+      "device",
+      "cell"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "moon",
+    "category": "core-ui",
+    "tags": [
+      "dark",
+      "night",
+      "theme"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "network",
@@ -504,6 +1568,44 @@
     "since": "0.1.0"
   },
   {
+    "name": "package",
+    "category": "deploy",
+    "tags": [
+      "box",
+      "npm",
+      "module",
+      "library"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "padding",
+    "category": "layout",
+    "tags": [
+      "spacing",
+      "inset",
+      "box model",
+      "css"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "pause",
+    "category": "core-ui",
+    "tags": [
+      "stop",
+      "hold",
+      "media"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "pencil",
     "category": "core-ui",
     "tags": [
@@ -518,6 +1620,44 @@
     "since": "0.1.0"
   },
   {
+    "name": "pin",
+    "category": "core-ui",
+    "tags": [
+      "pushpin",
+      "attach",
+      "keep"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "pipeline",
+    "category": "deploy",
+    "tags": [
+      "ci",
+      "cd",
+      "workflow",
+      "stages"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "play",
+    "category": "core-ui",
+    "tags": [
+      "start",
+      "run",
+      "media",
+      "video"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "plus",
     "category": "core-ui",
     "tags": [
@@ -530,6 +1670,83 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "popup",
+    "category": "browser",
+    "tags": [
+      "modal",
+      "dialog",
+      "overlay",
+      "window"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "pull-request",
+    "category": "git",
+    "tags": [
+      "pr",
+      "merge request",
+      "review",
+      "version control"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "qr-code",
+    "category": "browser",
+    "tags": [
+      "scan",
+      "barcode",
+      "link",
+      "mobile"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "query",
+    "category": "data",
+    "tags": [
+      "search",
+      "sql",
+      "select",
+      "lookup"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "queue",
+    "category": "deploy",
+    "tags": [
+      "jobs",
+      "messages",
+      "buffer",
+      "worker"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "redo",
+    "category": "core-ui",
+    "tags": [
+      "forward",
+      "repeat",
+      "history"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "refresh",
@@ -560,6 +1777,133 @@
     "since": "0.1.0"
   },
   {
+    "name": "repository",
+    "category": "git",
+    "tags": [
+      "repo",
+      "project",
+      "source",
+      "book"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "request",
+    "category": "data",
+    "tags": [
+      "http",
+      "send",
+      "call",
+      "client"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "response",
+    "category": "data",
+    "tags": [
+      "http",
+      "reply",
+      "return",
+      "server"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "responsive",
+    "category": "devices",
+    "tags": [
+      "devices",
+      "desktop and mobile",
+      "multi-device"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "rotate-device",
+    "category": "devices",
+    "tags": [
+      "orientation",
+      "landscape",
+      "portrait",
+      "turn"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "rows",
+    "category": "layout",
+    "tags": [
+      "layout",
+      "stack",
+      "horizontal"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "rss",
+    "category": "browser",
+    "tags": [
+      "feed",
+      "subscribe",
+      "blog",
+      "news"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "save",
+    "category": "core-ui",
+    "tags": [
+      "floppy",
+      "disk",
+      "store"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "scale",
+    "category": "deploy",
+    "tags": [
+      "autoscale",
+      "instances",
+      "replicas",
+      "grow"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "schema",
+    "category": "data",
+    "tags": [
+      "model",
+      "entity",
+      "relation",
+      "diagram"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "search",
     "category": "core-ui",
     "tags": [
@@ -572,6 +1916,43 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "send",
+    "category": "core-ui",
+    "tags": [
+      "submit",
+      "message",
+      "paper plane"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "seo",
+    "category": "security",
+    "tags": [
+      "search ranking",
+      "analytics",
+      "optimisation"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "server",
+    "category": "deploy",
+    "tags": [
+      "host",
+      "backend",
+      "machine",
+      "rack"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "settings",
@@ -590,6 +1971,94 @@
     "since": "0.1.0"
   },
   {
+    "name": "share",
+    "category": "core-ui",
+    "tags": [
+      "social",
+      "network",
+      "connect"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "shield",
+    "category": "security",
+    "tags": [
+      "security",
+      "protection",
+      "safe",
+      "defence"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "sidebar",
+    "category": "core-ui",
+    "tags": [
+      "panel",
+      "navigation",
+      "drawer"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "sitemap",
+    "category": "browser",
+    "tags": [
+      "structure",
+      "pages",
+      "hierarchy",
+      "navigation"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "sliders",
+    "category": "core-ui",
+    "tags": [
+      "controls",
+      "adjust",
+      "settings",
+      "options"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "smartwatch",
+    "category": "devices",
+    "tags": [
+      "watch",
+      "wearable",
+      "device"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "snapshot",
+    "category": "testing",
+    "tags": [
+      "camera",
+      "capture",
+      "screenshot",
+      "visual test"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "snippet",
     "category": "code",
     "tags": [
@@ -604,6 +2073,132 @@
     "since": "0.1.0"
   },
   {
+    "name": "sort",
+    "category": "core-ui",
+    "tags": [
+      "order",
+      "arrange",
+      "ascending",
+      "descending"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "speed",
+    "category": "security",
+    "tags": [
+      "fast",
+      "lightning",
+      "performance",
+      "instant"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "split",
+    "category": "code",
+    "tags": [
+      "split view",
+      "editor",
+      "side by side",
+      "columns"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "star",
+    "category": "core-ui",
+    "tags": [
+      "favourite",
+      "rating",
+      "bookmark"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "stash",
+    "category": "git",
+    "tags": [
+      "shelve",
+      "save for later",
+      "version control"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "step-into",
+    "category": "testing",
+    "tags": [
+      "debugger",
+      "enter",
+      "dive in"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "step-over",
+    "category": "testing",
+    "tags": [
+      "debugger",
+      "next",
+      "skip"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "stopwatch",
+    "category": "testing",
+    "tags": [
+      "timer",
+      "benchmark",
+      "duration",
+      "performance"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "storage",
+    "category": "deploy",
+    "tags": [
+      "disk",
+      "drive",
+      "volume",
+      "ssd"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "sun",
+    "category": "core-ui",
+    "tags": [
+      "light",
+      "day",
+      "theme",
+      "brightness"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "tab",
     "category": "browser",
     "tags": [
@@ -614,6 +2209,55 @@
     "aliases": [],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "table",
+    "category": "data",
+    "tags": [
+      "grid",
+      "spreadsheet",
+      "rows",
+      "data"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "tablet",
+    "category": "devices",
+    "tags": [
+      "ipad",
+      "device",
+      "touch"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "tabs",
+    "category": "browser",
+    "tags": [
+      "browser tabs",
+      "windows",
+      "pages"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "tag",
+    "category": "git",
+    "tags": [
+      "label",
+      "version",
+      "release"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "terminal",
@@ -631,6 +2275,70 @@
     "since": "0.1.0"
   },
   {
+    "name": "test",
+    "category": "testing",
+    "tags": [
+      "test tube",
+      "experiment",
+      "spec",
+      "lab"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "test-fail",
+    "category": "testing",
+    "tags": [
+      "failed",
+      "red",
+      "error",
+      "broken"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "test-pass",
+    "category": "testing",
+    "tags": [
+      "passed",
+      "green",
+      "success",
+      "ok"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "toggle",
+    "category": "core-ui",
+    "tags": [
+      "switch",
+      "on",
+      "enable"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "token",
+    "category": "security",
+    "tags": [
+      "jwt",
+      "ticket",
+      "session",
+      "auth"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "trash",
     "category": "core-ui",
     "tags": [
@@ -645,6 +2353,69 @@
     "since": "0.1.0"
   },
   {
+    "name": "tree-view",
+    "category": "code",
+    "tags": [
+      "file tree",
+      "explorer",
+      "hierarchy",
+      "outline"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "type",
+    "category": "code",
+    "tags": [
+      "generic",
+      "typescript",
+      "annotation",
+      "type parameter"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "typography",
+    "category": "layout",
+    "tags": [
+      "font",
+      "text",
+      "type",
+      "letters"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "undo",
+    "category": "core-ui",
+    "tags": [
+      "back",
+      "revert",
+      "history"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "unlock",
+    "category": "security",
+    "tags": [
+      "open",
+      "unsecure",
+      "unlocked"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "upload",
     "category": "core-ui",
     "tags": [
@@ -655,6 +2426,31 @@
     "aliases": [],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "user",
+    "category": "core-ui",
+    "tags": [
+      "person",
+      "account",
+      "profile"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "users",
+    "category": "core-ui",
+    "tags": [
+      "people",
+      "team",
+      "group",
+      "members"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   },
   {
     "name": "variable",
@@ -669,6 +2465,18 @@
     "since": "0.1.0"
   },
   {
+    "name": "viewport",
+    "category": "devices",
+    "tags": [
+      "screen width",
+      "resize",
+      "responsive"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
     "name": "warning",
     "category": "core-ui",
     "tags": [
@@ -681,5 +2489,92 @@
     ],
     "tier": "free",
     "since": "0.1.0"
+  },
+  {
+    "name": "webhook",
+    "category": "data",
+    "tags": [
+      "hook",
+      "callback",
+      "event",
+      "trigger"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "websocket",
+    "category": "data",
+    "tags": [
+      "socket",
+      "realtime",
+      "connection",
+      "stream"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "wifi",
+    "category": "browser",
+    "tags": [
+      "wireless",
+      "connection",
+      "online",
+      "signal"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "wifi-off",
+    "category": "browser",
+    "tags": [
+      "offline",
+      "disconnected",
+      "no signal"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "word-wrap",
+    "category": "code",
+    "tags": [
+      "wrap",
+      "text",
+      "line break"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "zoom-in",
+    "category": "core-ui",
+    "tags": [
+      "magnify",
+      "enlarge",
+      "plus"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
+  },
+  {
+    "name": "zoom-out",
+    "category": "core-ui",
+    "tags": [
+      "magnify",
+      "shrink",
+      "minus"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.2.0"
   }
 ]

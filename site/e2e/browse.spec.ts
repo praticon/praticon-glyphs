@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { metadata } from "@praticon-glyphs/core";
 import { componentName } from "../src/snippets.ts";
 import { expectClipboardEnd, focusedTile, trackErrors } from "./helpers.ts";
 
@@ -9,6 +10,12 @@ test.beforeEach(({ page }) => {
   expectNoErrors = trackErrors(page);
 });
 test.afterEach(() => expectNoErrors());
+
+/** Search matches names, tags and aliases, so check all three. */
+const matches = (name: string | undefined, word: string) => {
+  const icon = metadata.find((entry) => entry.name === name)!;
+  return [icon.name, ...icon.tags, ...icon.aliases].some((text) => text.includes(word));
+};
 
 const tileNames = (page: Page) => page.locator("a.tile").evaluateAll((tiles) => tiles.map((t) => (t as HTMLElement).dataset.name));
 
@@ -168,7 +175,7 @@ test.describe("browsing", () => {
     const total = await page.locator("a.tile").count();
     await page.getByRole("searchbox").fill("arrow");
     await expect.poll(() => page.locator("a.tile").count()).toBeLessThan(total);
-    for (const name of await tileNames(page)) expect(name).toContain("arrow");
+    for (const name of await tileNames(page)) expect(matches(name, "arrow"), name).toBe(true);
 
     await page.getByRole("searchbox").fill("zzzz");
     await expect(page.locator("a.tile")).toHaveCount(0);
