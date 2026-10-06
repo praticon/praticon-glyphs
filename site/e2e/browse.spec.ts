@@ -231,6 +231,53 @@ test.describe("browsing", () => {
   });
 });
 
+test.describe("shareable links", () => {
+  test("a link opens the same search, category and style", async ({ page }) => {
+    await page.goto("?q=file&category=code&size=32&stroke=1.5&color=2563eb");
+    await expect(page.getByRole("searchbox")).toHaveValue("file");
+    await expect(page.getByRole("button", { name: /^Code & editor/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#icon-size")).toHaveValue("32");
+    await expect(page.locator("#icon-stroke")).toHaveValue("1.5");
+    await expect(page.getByRole("button", { name: "Colour #2563eb" })).toHaveAttribute("aria-pressed", "true");
+    for (const name of await tileNames(page)) expect(matches(name, "file"), name).toBe(true);
+  });
+
+  test("a shared link wins over the visitor's saved style", async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem("praticon:style", JSON.stringify({ size: 40, strokeWidth: 1 })));
+    await page.goto("?size=20");
+    await expect(page.locator("#icon-size")).toHaveValue("20");
+  });
+
+  test("the address bar follows the view, and icon pages keep it", async ({ page }) => {
+    await page.goto("");
+    await page.getByRole("searchbox").fill("arrow");
+    await page.locator("#icon-size").fill("32");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/\?q=arrow&size=32$/);
+
+    await page.locator("a.tile").first().click();
+    await expect(page).toHaveURL(/\/icons\/arrow-[a-z]+\/\?q=arrow&size=32$/);
+    await page.keyboard.press("Escape");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/\?q=arrow&size=32$/);
+
+    await page.getByRole("searchbox").fill("");
+    await page.getByRole("button", { name: "Reset" }).click();
+    await expect(page).toHaveURL(/\/praticon-glyphs\/$/);
+  });
+
+  test("Copy link to this view copies the public URL", async ({ page }) => {
+    await page.goto("?q=tab");
+    await page.getByRole("button", { name: "Copy link to this view" }).click();
+    await expectClipboardEnd(page, "https://praticon.github.io/praticon-glyphs/?q=tab");
+  });
+
+  test("invalid values in a link are ignored", async ({ page }) => {
+    await page.goto("?category=nope&size=999&color=red");
+    await expect(page.getByRole("button", { name: /^All/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#icon-size")).toHaveValue("24");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/$/);
+  });
+});
+
 test.describe("docs", () => {
   test("the header opens Getting started and code blocks copy", async ({ page }) => {
     await page.goto("");

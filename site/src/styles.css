@@ -929,6 +929,16 @@ kbd {
   margin: 0 2px;
 }
 
+/* Sits beside the count; the shortcuts stay on the right. */
+.results-bar .share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  padding: 0 6px;
+  font-size: 13px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
