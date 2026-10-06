@@ -14,7 +14,7 @@ import { usePersistentState } from "./persist.ts";
 import { iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
 import { headFor } from "./seo.ts";
-import { DEFAULT_STYLE, componentName, jsxSnippet, type IconStyle } from "./snippets.ts";
+import { DEFAULT_STYLE, FORMATS, componentName, isFormat, snippet, type IconStyle } from "./snippets.ts";
 
 export const BASE = import.meta.env.BASE_URL;
 const ICON_NAMES = new Set(metadata.map((icon) => icon.name));
@@ -41,6 +41,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [style, setStyle] = usePersistentState("style", DEFAULT_STYLE, isStyle);
   const [savedList, setSavedList] = usePersistentState<string[]>("saved", [], isNameList);
+  const [format, setFormat] = usePersistentState("format", "react", isFormat);
   const [route, setRoute] = useState<Route>(initialRoute);
   const [toast, setToast] = useState<{ id: number; message: string }>();
   const searchRef = useRef<HTMLInputElement>(null);
@@ -68,9 +69,12 @@ export function App({ initialRoute }: { initialRoute: Route }) {
     async (text: string, what: string) => notify((await copyText(text)) ? `${what} copied` : "Copy failed, select the text instead"),
     [notify],
   );
-  const copyJsx = useCallback((name: string) => copy(jsxSnippet(name, style), `<${componentName(name)} />`), [copy, style]);
-  const copyJsxRef = useRef(copyJsx);
-  copyJsxRef.current = copyJsx;
+  const copyCode = useCallback(
+    (name: string) => copy(snippet(format, name, style), format === "svg" ? `${name}.svg markup` : `<${componentName(name)} />`),
+    [copy, format, style],
+  );
+  const copyCodeRef = useRef(copyCode);
+  copyCodeRef.current = copyCode;
 
   const toggleSaved = useCallback(
     (name: string) => {
@@ -123,7 +127,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
         select(undefined);
       } else if ((event.key === "c" || event.key === "C") && !typing && selectedRef.current) {
         if (event.altKey || event.ctrlKey || event.metaKey) return;
-        copyJsxRef.current(selectedRef.current);
+        copyCodeRef.current(selectedRef.current);
       }
     };
     const onPopState = () => setRoute(currentRoute());
@@ -195,7 +199,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                       : `${results.length} of ${metadata.length} icons`}
                   </p>
                   <p className="shortcuts">
-                    Arrow keys move · <kbd>Enter</kbd> open · <kbd>C</kbd> copy JSX · <kbd>/</kbd> search
+                    Arrow keys move · <kbd>Enter</kbd> open · <kbd>C</kbd> copy {FORMATS.find(([f]) => f === format)![1]} · <kbd>/</kbd> search
                   </p>
                 </div>
 
@@ -207,7 +211,8 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                     saved={saved}
                     style={style}
                     onSelect={select}
-                    onCopyJsx={copyJsx}
+                    format={format}
+                    onCopyCode={copyCode}
                     onToggleSaved={toggleSaved}
                   />
                 ) : filter === "saved" && !query ? (
@@ -236,6 +241,8 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                 <IconDetail
                   icon={selectedIcon}
                   style={style}
+                  format={format}
+                  onFormat={setFormat}
                   isSaved={saved.has(selectedIcon.name)}
                   headingLevel="h1"
                   onClose={() => select(undefined)}

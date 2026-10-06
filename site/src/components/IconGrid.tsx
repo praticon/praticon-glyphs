@@ -5,7 +5,7 @@ import { CopyIcon, type PraticonIcon } from "@praticon-glyphs/react";
 import { isPlainClick } from "../browser.ts";
 import { columnCount, nextIndex } from "../grid-nav.ts";
 import { iconPath } from "../routes.ts";
-import { componentName, type IconStyle } from "../snippets.ts";
+import { FORMATS, componentName, type Format, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
 
 const components = allIcons as unknown as Record<string, PraticonIcon>;
@@ -18,7 +18,8 @@ export function IconGrid({
   saved,
   style,
   onSelect,
-  onCopyJsx,
+  format,
+  onCopyCode,
   onToggleSaved,
 }: {
   base: string;
@@ -27,9 +28,11 @@ export function IconGrid({
   saved: ReadonlySet<string>;
   style: IconStyle;
   onSelect: (name: string | undefined) => void;
-  onCopyJsx: (name: string) => void;
+  format: Format;
+  onCopyCode: (name: string) => void;
   onToggleSaved: (name: string) => void;
 }) {
+  const formatLabel = FORMATS.find(([f]) => f === format)![1];
   /** Arrow keys move between tiles, Home/End jump to the ends, C copies the focused icon. */
   const onKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
     const tile = (event.target as HTMLElement).closest<HTMLAnchorElement>("a.tile");
@@ -37,7 +40,7 @@ export function IconGrid({
     if (event.key === "c" || event.key === "C") {
       event.preventDefault();
       event.stopPropagation();
-      onCopyJsx(tile.dataset.name!);
+      onCopyCode(tile.dataset.name!);
       return;
     }
     const tiles = Array.from(event.currentTarget.querySelectorAll<HTMLAnchorElement>("a.tile"));
@@ -77,9 +80,9 @@ export function IconGrid({
                 type="button"
                 className="tile-action tile-copy"
                 tabIndex={-1}
-                aria-label={`Copy ${componentName(icon.name)} JSX`}
-                title="Copy JSX"
-                onClick={() => onCopyJsx(icon.name)}
+                aria-label={`Copy ${componentName(icon.name)} as ${formatLabel}`}
+                title={`Copy ${formatLabel}`}
+                onClick={() => onCopyCode(icon.name)}
               >
                 <CopyIcon size={14} aria-hidden="true" />
               </button>

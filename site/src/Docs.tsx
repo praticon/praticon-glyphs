@@ -4,11 +4,13 @@ import { CheckIcon, CopyIcon } from "@praticon-glyphs/react";
 const SECTIONS = [
   ["install", "Install"],
   ["react", "Use in React"],
+  ["vue", "Use in Vue"],
+  ["svelte", "Use in Svelte"],
   ["props", "Props"],
   ["imports", "Importing"],
   ["accessibility", "Accessibility"],
   ["styling", "Styling"],
-  ["without-react", "Without React"],
+  ["without-framework", "Without a framework"],
   ["typescript", "TypeScript"],
   ["custom-icons", "Your own icons"],
 ] as const;
@@ -67,18 +69,22 @@ export function Docs({ onCopy }: { onCopy: (text: string) => void }) {
         <h1>Getting started</h1>
         <p className="lede">
           Praticon icons are drawn on a 24 × 24 grid with a 2 px round stroke and inherit your text colour. Use them as
-          typed React components, or as plain SVG in any framework.
+          typed React, Vue or Svelte components, or as plain SVG anywhere else.
         </p>
 
         <Section id="install" title="Install">
-          <p>For React projects:</p>
+          <p>Install the package for your framework:</p>
           {code("npm i @praticon-glyphs/react")}
+          {code("npm i @praticon-glyphs/vue")}
+          {code("npm i @praticon-glyphs/svelte")}
           <p>
             For plain HTML, server templates or other frameworks, use the core package, which ships the SVG files, the
             icon data and a <code>toSvg()</code> helper:
           </p>
           {code("npm i @praticon-glyphs/core")}
-          <p>Both work with pnpm and Yarn too. The React package needs React 18 or later.</p>
+          <p>
+            They all work with pnpm and Yarn too. The framework packages need React 18, Vue 3.3 or Svelte 5 or later.
+          </p>
         </Section>
 
         <Section id="react" title="Use in React">
@@ -95,6 +101,48 @@ export function Toolbar() {
     </>
   );
 }`)}
+        </Section>
+
+        <Section id="vue" title="Use in Vue">
+          <p>
+            The Vue package has the same icons and props. Bind numbers with <code>:</code>, and write{" "}
+            <code>strokeWidth</code> as <code>stroke-width</code> in templates if you prefer:
+          </p>
+          {code(`<script setup>
+import { ArrowLeft, Terminal } from "@praticon-glyphs/vue";
+</script>
+
+<template>
+  <button aria-label="Back">
+    <ArrowLeft />
+  </button>
+  <Terminal :size="32" :stroke-width="1.5" color="#5b21b6" />
+</template>`)}
+          <p>
+            Other attributes and the default slot pass through to the <code>&lt;svg&gt;</code>. Wrap your own icons with{" "}
+            <code>createIcon()</code>, exactly as in React.
+          </p>
+        </Section>
+
+        <Section id="svelte" title="Use in Svelte">
+          <p>The Svelte package needs Svelte 5. Each icon is its own component file, so only the icons you import are bundled:</p>
+          {code(`<script>
+  import { ArrowLeft, Terminal } from "@praticon-glyphs/svelte";
+</script>
+
+<button aria-label="Back">
+  <ArrowLeft />
+</button>
+<Terminal size={32} strokeWidth={1.5} color="#5b21b6" />`)}
+          <p>
+            Children such as a <code>&lt;title&gt;</code> render inside the <code>&lt;svg&gt;</code>. To draw your own
+            icons with the same props, use the <code>Icon</code> component:
+          </p>
+          {code(`<script>
+  import { Icon } from "@praticon-glyphs/svelte";
+</script>
+
+<Icon name="rocket" node={[["path", { d: "M12 15l-3-3a12 12 0 0 1 9-9" }]]} />`)}
         </Section>
 
         <Section id="props" title="Props">
@@ -133,8 +181,8 @@ export function Toolbar() {
                   <td></td>
                   <td></td>
                   <td>
-                    Passed to the <code>&lt;svg&gt;</code>, including <code>className</code>, <code>style</code>, event handlers and{" "}
-                    <code>ref</code>.
+                    Passed to the <code>&lt;svg&gt;</code>, including <code>className</code> (<code>class</code> in Vue and
+                    Svelte), <code>style</code>, event handlers and, in React, <code>ref</code>.
                   </td>
                 </tr>
               </tbody>
@@ -181,10 +229,10 @@ export function Toolbar() {
 }`)}
         </Section>
 
-        <Section id="without-react" title="Without React">
+        <Section id="without-framework" title="Without a framework">
           <p>
             <code>toSvg()</code> returns SVG markup as a string, for plain HTML, server templates or any framework. It
-            takes the same options as the React props, plus extra attributes:
+            takes the same options as the component props, plus extra attributes:
           </p>
           {code(`import { toSvg } from "@praticon-glyphs/core";
 
@@ -194,7 +242,7 @@ document.querySelector("#back").innerHTML = toSvg("arrow-left", {
   attrs: { class: "icon", "aria-label": "Back" },
 });`)}
           <p>
-            Like the React components, the output is decorative unless you pass an <code>aria-label</code> or{" "}
+            Like the components, the output is decorative unless you pass an <code>aria-label</code> or{" "}
             <code>aria-labelledby</code>. Unknown icon names and invalid attribute names throw an error.
           </p>
           <p>
