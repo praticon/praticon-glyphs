@@ -16,6 +16,7 @@
     "generate": "pnpm lint:icons && pnpm optimize && pnpm build:react",
     "build": "pnpm generate && pnpm -r build",
     "test": "vitest run",
+    "test:e2e": "pnpm --filter @praticon-glyphs/site test:e2e",
     "typecheck": "tsc -p tsconfig.json && pnpm --filter @praticon-glyphs/site typecheck",
     "changeset": "changeset",
     "release": "pnpm build && pnpm test && changeset publish"
