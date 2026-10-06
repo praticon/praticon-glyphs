@@ -25,3 +25,5 @@ jobs:
         run: pnpm typecheck
       - name: Test
         run: pnpm test
+      - name: Check icons are not copies of other libraries
+        run: pnpm audit:icons --fail-above 0.8

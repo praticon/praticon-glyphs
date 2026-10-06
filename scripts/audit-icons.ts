@@ -23,7 +23,7 @@ import { ROOT, SOURCE_DIR, listSvgNames } from "./lib.ts";
 /** Shapes every library draws the same way; a high score here means nothing. */
 const UNIVERSAL = new Set([
   "chevron-down", "chevron-left", "chevron-right", "chevron-up",
-  "close", "ellipsis", "menu", "minus", "plus",
+  "close", "ellipsis", "info", "menu", "minus", "plus",
 ]);
 const NEAR_COPY = 0.9;
 const CLOSE = 0.8;
