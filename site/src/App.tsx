@@ -1,6 +1,6 @@
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { metadata, type IconMetadata } from "@praticon-glyphs/core";
-import { CheckIcon, FolderIcon, SearchIcon } from "@praticon-glyphs/react";
+import { CheckIcon, FolderIcon, LinkIcon, SearchIcon } from "@praticon-glyphs/react";
 import corePackage from "@praticon-glyphs/core/package.json";
 import { copyText, downloadSvg, isPlainClick } from "./browser.ts";
 import { Docs } from "./Docs.tsx";
@@ -11,10 +11,11 @@ import { SiteFooter } from "./components/SiteFooter.tsx";
 import { SiteHeader } from "./components/SiteHeader.tsx";
 import { Toolbar, type Filter } from "./components/Toolbar.tsx";
 import { usePersistentState } from "./persist.ts";
-import { iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
+import { SITE_URL, iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
 import { headFor } from "./seo.ts";
 import { DEFAULT_STYLE, FORMATS, componentName, isFormat, snippet, type IconStyle } from "./snippets.ts";
+import { parseView, viewSearch, type View } from "./view-params.ts";
 
 export const BASE = import.meta.env.BASE_URL;
 const ICON_NAMES = new Set(metadata.map((icon) => icon.name));
@@ -45,6 +46,32 @@ export function App({ initialRoute }: { initialRoute: Route }) {
   const [route, setRoute] = useState<Route>(initialRoute);
   const [toast, setToast] = useState<{ id: number; message: string }>();
   const searchRef = useRef<HTMLInputElement>(null);
+
+  // The search, category and style live in the query string, so a link opens the same view.
+  // Pre-rendered pages have no query string; read it after mount (after the saved style,
+  // so a shared link wins) and only then start writing the URL.
+  const [viewReady, setViewReady] = useState(false);
+  const applyView = useCallback(
+    (view: Partial<View>) => {
+      if (view.query !== undefined) setQuery(view.query);
+      if (view.category) setFilter(view.category);
+      if (view.style) setStyle(view.style);
+    },
+    [setStyle],
+  );
+  useEffect(() => {
+    applyView(parseView(location.search));
+    setViewReady(true);
+  }, [applyView]);
+  const search = viewSearch({ query, category: filter === "all" || filter === "saved" ? undefined : filter, style });
+  const viewSearchRef = useRef(search);
+  viewSearchRef.current = search;
+  useEffect(() => {
+    if (!viewReady || search === location.search) return;
+    // Debounced: typing would otherwise rewrite the URL on every keystroke, which Safari rate-limits.
+    const timer = window.setTimeout(() => history.replaceState(null, "", location.pathname + search), 300);
+    return () => window.clearTimeout(timer);
+  }, [search, viewReady]);
 
   const saved = useMemo(() => new Set(savedList.filter((name) => ICON_NAMES.has(name))), [savedList]);
   const selected = route.page === "browse" ? route.icon : undefined;
@@ -87,7 +114,8 @@ export function App({ initialRoute }: { initialRoute: Route }) {
 
   const navigate = useCallback((next: Route) => {
     setRoute(next);
-    history.pushState(null, "", pathFor(BASE, next));
+    // Docs has no view to carry; browse pages keep the current search and style.
+    history.pushState(null, "", pathFor(BASE, next) + (next.page === "docs" ? "" : viewSearchRef.current));
     if (next.page === "docs") window.scrollTo(0, 0);
   }, []);
   const select = useCallback((name: string | undefined) => navigate({ page: "browse", icon: name }), [navigate]);
@@ -198,6 +226,13 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                       ? `${results.length} icons`
                       : `${results.length} of ${metadata.length} icons`}
                   </p>
+                  <button
+                    type="button"
+                    className="text-button share"
+                    onClick={() => copy(SITE_URL + location.pathname.slice(BASE.length) + search, "Link to this view")}
+                  >
+                    <LinkIcon size={14} aria-hidden="true" /> Copy link to this view
+                  </button>
                   <p className="shortcuts">
                     Arrow keys move · <kbd>Enter</kbd> open · <kbd>C</kbd> copy {FORMATS.find(([f]) => f === format)![1]} · <kbd>/</kbd> search
                   </p>
