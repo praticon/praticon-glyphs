@@ -1,6 +1,6 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { categories, metadata, type IconName } from "@praticon-glyphs/core";
-import * as Praticon from "@praticon-glyphs/react";
+import { ArrowDownIcon, ArrowRightIcon, CopyIcon } from "@praticon-glyphs/react";
 import { iconPath, docsPath, type Route } from "../routes.ts";
 import { DrawnIcon, GridGuide } from "./DrawnIcon.tsx";
 
@@ -36,7 +36,7 @@ export function Hero({
         <div className="hero-actions">
           <a className="button primary large" href="#icons">
             Browse icons
-            <Praticon.ArrowDown size={18} aria-hidden="true" />
+            <ArrowDownIcon size={18} aria-hidden="true" />
           </a>
           <a className="button large" href={docsPath(base)} onClick={linkTo({ page: "docs" })}>
             Get started
@@ -55,7 +55,7 @@ export function Hero({
             aria-label="Copy install command"
             onClick={() => onCopy(installCommand, "Install command")}
           >
-            <Praticon.Copy size={16} />
+            <CopyIcon size={16} />
           </button>
         </div>
         <dl className="hero-stats">
@@ -137,7 +137,7 @@ function Specimen({ base, linkTo }: { base: string; linkTo: (route: Route) => (e
           aria-label="Show the next icon"
           onClick={() => setIndex((i) => (i + 1) % FEATURED.length)}
         >
-          <Praticon.ArrowRight size={16} />
+          <ArrowRightIcon size={16} />
         </button>
       </figcaption>
       <div className="specimen-progress" aria-hidden="true">

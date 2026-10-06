@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import { categories, metadata, type IconCategory } from "@praticon-glyphs/core";
-import * as Praticon from "@praticon-glyphs/react";
+import { SearchIcon } from "@praticon-glyphs/react";
 import { DEFAULT_STYLE, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
 
@@ -42,7 +42,7 @@ export function Toolbar({
     <section className="toolbar" aria-label="Search and customise icons">
       <div className="toolbar-inner">
         <div className="search">
-          <Praticon.Search size={18} aria-hidden="true" />
+          <SearchIcon size={18} aria-hidden="true" />
           <input
             ref={searchRef}
             id="icon-search"

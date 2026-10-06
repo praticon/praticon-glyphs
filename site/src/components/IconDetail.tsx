@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { IconMetadata, IconName } from "@praticon-glyphs/core";
-import * as Praticon from "@praticon-glyphs/react";
+import { CloseIcon, CopyIcon, DownloadIcon, LinkIcon } from "@praticon-glyphs/react";
 import { SITE_URL } from "../routes.ts";
 import { jsxSnippet, svgSnippet, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
@@ -42,7 +42,7 @@ export function IconDetail({
           <Heading className="detail-title mono">{icon.name}</Heading>
         </div>
         <button type="button" className="icon-button" aria-label="Close details" onClick={onClose}>
-          <Praticon.Close size={18} />
+          <CloseIcon size={18} />
         </button>
       </div>
 
@@ -91,10 +91,10 @@ export function IconDetail({
 
       <div className="actions">
         <button type="button" className="button primary" onClick={() => onCopy(code, tab === "react" ? "JSX" : "SVG")}>
-          <Praticon.Copy size={16} aria-hidden="true" /> Copy {tab === "react" ? "JSX" : "SVG"}
+          <CopyIcon size={16} aria-hidden="true" /> Copy {tab === "react" ? "JSX" : "SVG"}
         </button>
         <button type="button" className="button" onClick={() => onDownload(icon.name, svg)}>
-          <Praticon.Download size={16} aria-hidden="true" /> SVG
+          <DownloadIcon size={16} aria-hidden="true" /> SVG
         </button>
         <button type="button" className="button" aria-pressed={isSaved} onClick={() => onToggleSaved(icon.name)}>
           <Star size={16} fill={isSaved ? "currentColor" : "none"} aria-hidden="true" /> {isSaved ? "Saved" : "Save"}
@@ -106,7 +106,7 @@ export function IconDetail({
           title="Copy link"
           onClick={() => onCopy(`${SITE_URL}icons/${icon.name}/`, "Link")}
         >
-          <Praticon.Link size={16} />
+          <LinkIcon size={16} />
         </button>
       </div>
     </aside>

@@ -1,6 +1,6 @@
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { metadata, type IconMetadata } from "@praticon-glyphs/core";
-import * as Praticon from "@praticon-glyphs/react";
+import { CheckIcon, FolderIcon, SearchIcon } from "@praticon-glyphs/react";
 import corePackage from "@praticon-glyphs/core/package.json";
 import { copyText, downloadSvg, isPlainClick } from "./browser.ts";
 import { Docs } from "./Docs.tsx";
@@ -212,7 +212,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                   />
                 ) : filter === "saved" && !query ? (
                   <div className="empty">
-                    <Praticon.Folder size={32} aria-hidden="true" />
+                    <FolderIcon size={32} aria-hidden="true" />
                     <p>
                       <strong>No saved icons yet.</strong> Star icons you use often and they will wait for you here on
                       your next visit.
@@ -220,7 +220,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                   </div>
                 ) : (
                   <div className="empty">
-                    <Praticon.Search size={32} aria-hidden="true" />
+                    <SearchIcon size={32} aria-hidden="true" />
                     <p>
                       <strong>No icons match “{query}”.</strong> Try a broader word, or{" "}
                       <a className="text-link" href={`${REPO_URL}/issues/new?title=${encodeURIComponent(`Icon request: ${query}`)}`}>
@@ -254,7 +254,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
       <div className="toast" role="status" aria-live="polite" hidden={!toast}>
         {toast && (
           <span key={toast.id} className="toast-message">
-            <Praticon.Check size={16} aria-hidden="true" />
+            <CheckIcon size={16} aria-hidden="true" />
             {toast.message}
           </span>
         )}

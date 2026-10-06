@@ -1,13 +1,14 @@
 import type { CSSProperties, KeyboardEvent, MouseEvent } from "react";
 import type { IconMetadata } from "@praticon-glyphs/core";
-import * as Praticon from "@praticon-glyphs/react";
+import * as allIcons from "@praticon-glyphs/react";
+import { CopyIcon, type PraticonIcon } from "@praticon-glyphs/react";
 import { isPlainClick } from "../browser.ts";
 import { columnCount, nextIndex } from "../grid-nav.ts";
 import { iconPath } from "../routes.ts";
 import { componentName, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
 
-const components = Praticon as unknown as Record<string, Praticon.PraticonIcon>;
+const components = allIcons as unknown as Record<string, PraticonIcon>;
 export const iconComponent = (name: string) => components[componentName(name)];
 
 export function IconGrid({
@@ -80,7 +81,7 @@ export function IconGrid({
                 title="Copy JSX"
                 onClick={() => onCopyJsx(icon.name)}
               >
-                <Praticon.Copy size={14} aria-hidden="true" />
+                <CopyIcon size={14} aria-hidden="true" />
               </button>
               <button
                 type="button"

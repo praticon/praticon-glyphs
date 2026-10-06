@@ -1,5 +1,5 @@
 import type { MouseEvent } from "react";
-import * as Praticon from "@praticon-glyphs/react";
+import { BracketsIcon, ExternalLinkIcon } from "@praticon-glyphs/react";
 import { docsPath, type Route } from "../routes.ts";
 import { Moon, Sun } from "../ui-icons.ts";
 
@@ -34,7 +34,7 @@ export function SiteHeader({
       <div className="site-header-inner">
         <a className="wordmark" href={base} onClick={linkTo({ page: "browse" })} aria-label="Praticon home">
           <span className="wordmark-mark" aria-hidden="true">
-            <Praticon.Brackets size={18} strokeWidth={2.5} />
+            <BracketsIcon size={18} strokeWidth={2.5} />
           </span>
           <span className="wordmark-name">Praticon</span>
           <span className="wordmark-version mono">v{version}</span>
@@ -50,7 +50,7 @@ export function SiteHeader({
           </a>
           <a href="https://github.com/praticon/praticon-glyphs" className="nav-external">
             GitHub
-            <Praticon.ExternalLink size={14} aria-hidden="true" />
+            <ExternalLinkIcon size={14} aria-hidden="true" />
           </a>
         </nav>
 

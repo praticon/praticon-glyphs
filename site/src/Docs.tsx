@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import * as Praticon from "@praticon-glyphs/react";
+import { CheckIcon, CopyIcon } from "@praticon-glyphs/react";
 
 const SECTIONS = [
   ["install", "Install"],
@@ -28,7 +28,7 @@ function CodeBlock({ code, onCopy }: { code: string; onCopy: (text: string) => v
           window.setTimeout(() => setCopied(false), 1500);
         }}
       >
-        {copied ? <Praticon.Check size={16} /> : <Praticon.Copy size={16} />}
+        {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
       </button>
     </div>
   );

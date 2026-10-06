@@ -1,5 +1,5 @@
 import type { MouseEvent } from "react";
-import * as Praticon from "@praticon-glyphs/react";
+import { BracketsIcon } from "@praticon-glyphs/react";
 import { docsPath, type Route } from "../routes.ts";
 
 const REPO_URL = "https://github.com/praticon/praticon-glyphs";
@@ -10,7 +10,7 @@ export function SiteFooter({ base, linkTo }: { base: string; linkTo: (route: Rou
       <div className="footer-inner">
         <div className="footer-brand">
           <span className="wordmark-mark" aria-hidden="true">
-            <Praticon.Brackets size={18} strokeWidth={2.5} />
+            <BracketsIcon size={18} strokeWidth={2.5} />
           </span>
           <p>
             <strong>Praticon.</strong> Symbols, crafted. Drawn on a 24 × 24 grid with a 2 px round stroke, and MIT licensed.
