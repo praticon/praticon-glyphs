@@ -15,6 +15,13 @@ describe("pre-rendering", () => {
     expect(html.match(/class="tile"/g)?.length).toBeGreaterThanOrEqual(50);
   });
 
+  it("renders the Getting started page", () => {
+    const { head, html } = render({ page: "docs" });
+    expect(head).toContain("<title>Getting started · Praticon Icons</title>");
+    expect(html).toContain("<h1>Getting started</h1>");
+    expect(html).toContain("npm i @praticon-glyphs/react");
+  });
+
   it("renders a not-found notice", () => {
     expect(render({ page: "not-found" }).html).toContain("That page does not exist");
   });

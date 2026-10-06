@@ -2,7 +2,8 @@ import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, ty
 import { categories, metadata, type IconCategory, type IconMetadata, type IconName } from "@praticon-glyphs/core";
 import * as Praticon from "@praticon-glyphs/react";
 import corePackage from "@praticon-glyphs/core/package.json";
-import { iconPath, parseRoute, type Route } from "./routes.ts";
+import { Docs } from "./Docs.tsx";
+import { docsPath, iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
 import { headFor } from "./seo.ts";
 import { DEFAULT_STYLE, componentName, jsxSnippet, svgSnippet, type IconStyle } from "./snippets.ts";
@@ -66,10 +67,19 @@ export function App({ initialRoute }: { initialRoute: Route }) {
   const results = useMemo(() => searchIcons(metadata, deferredQuery, category), [deferredQuery, category]);
   const selectedIcon = metadata.find((icon) => icon.name === selected);
 
-  const select = useCallback((name: string | undefined) => {
-    setRoute({ page: "browse", icon: name });
-    history.pushState(null, "", name ? iconPath(BASE, name) : BASE);
+  const navigate = useCallback((next: Route) => {
+    setRoute(next);
+    history.pushState(null, "", pathFor(BASE, next));
+    if (next.page === "docs") window.scrollTo(0, 0);
   }, []);
+  const select = useCallback((name: string | undefined) => navigate({ page: "browse", icon: name }), [navigate]);
+
+  /** onClick for in-app links: plain clicks navigate without a reload. */
+  const linkTo = (next: Route) => (event: MouseEvent) => {
+    if (!isPlainClick(event)) return;
+    event.preventDefault();
+    navigate(next);
+  };
 
   useEffect(() => {
     document.title = headFor(route, metadata).title;
@@ -116,11 +126,19 @@ export function App({ initialRoute }: { initialRoute: Route }) {
             <Praticon.Brackets size={28} strokeWidth={2.25} />
           </span>
           <div>
-            <h1>Praticon</h1>
+            {route.page === "docs" ? <p className="brand-name">Praticon</p> : <h1 className="brand-name">Praticon</h1>}
             <p className="tagline">Symbols, crafted. Grid-based SVG icons for web development.</p>
           </div>
         </div>
         <div className="masthead-meta">
+          <nav className="site-nav" aria-label="Site">
+            <a href={BASE} aria-current={route.page !== "docs" ? "page" : undefined} onClick={linkTo({ page: "browse" })}>
+              Icons
+            </a>
+            <a href={docsPath(BASE)} aria-current={route.page === "docs" ? "page" : undefined} onClick={linkTo({ page: "docs" })}>
+              Getting started
+            </a>
+          </nav>
           <span className="badge mono">v{corePackage.version}</span>
           <span className="badge">{metadata.length} icons</span>
           <span className="badge">MIT</span>
@@ -131,6 +149,10 @@ export function App({ initialRoute }: { initialRoute: Route }) {
         <InstallCommand onCopy={notify} />
       </header>
 
+      {route.page === "docs" ? (
+        <Docs onCopy={async (text) => notify((await copyText(text)) ? "Code copied" : "Copy failed, select the text instead")} />
+      ) : (
+        <>
       <section className="toolbar" aria-label="Search and customise icons">
         <div className="search">
           <Praticon.Search size={18} aria-hidden="true" />
@@ -167,11 +189,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
           {route.page === "not-found" && (
             <p className="notice" role="status">
               That page does not exist, but every Praticon icon is below.{" "}
-              <a className="text-link" href={BASE} onClick={(event) => {
-                if (!isPlainClick(event)) return;
-                event.preventDefault();
-                select(undefined);
-              }}>
+              <a className="text-link" href={BASE} onClick={linkTo({ page: "browse" })}>
                 Go to the home page
               </a>
             </p>
@@ -220,6 +238,8 @@ export function App({ initialRoute }: { initialRoute: Route }) {
           <IconDetail icon={selectedIcon} style={style} onClose={() => select(undefined)} onCopy={notify} />
         )}
       </main>
+        </>
+      )}
 
       <footer className="footer">
         <span>

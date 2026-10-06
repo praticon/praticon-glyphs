@@ -23,6 +23,15 @@ export function headFor(route: Route, metadata: readonly IconMetadata[]): Head {
       image: `${SITE_URL}og/${icon.name}.png`,
     };
   }
+  if (route.page === "docs") {
+    return {
+      title: `Getting started · ${SITE_TITLE}`,
+      description:
+        "Install Praticon and use its icons as React components or plain SVG: props, imports, accessibility, styling, TypeScript and custom icons.",
+      url: `${SITE_URL}docs/`,
+      image: `${SITE_URL}og/praticon.png`,
+    };
+  }
   return {
     title: route.page === "not-found" ? `Page not found · ${SITE_TITLE}` : SITE_TITLE,
     description: `Search and copy ${metadata.length} crafted, grid-based SVG icons for web development, as React components or plain SVG. MIT licensed.`,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { IconMetadata } from "@praticon-glyphs/core";
-import { iconPath, parseRoute } from "./routes.ts";
+import { iconPath, parseRoute, pathFor } from "./routes.ts";
 import { headFor, renderHead } from "./seo.ts";
 
 const base = "/praticon-glyphs/";
@@ -25,6 +25,11 @@ describe("parseRoute", () => {
     expect(parseRoute("/praticon-glyphs/icons/nope/", base, names)).toEqual({ page: "not-found" });
     expect(parseRoute("/praticon-glyphs/somewhere/", base, names)).toEqual({ page: "not-found" });
     expect(parseRoute("/elsewhere/", base, names)).toEqual({ page: "not-found" });
+  });
+
+  it("maps the Getting started page", () => {
+    expect(parseRoute("/praticon-glyphs/docs/", base, names)).toEqual({ page: "docs" });
+    expect(pathFor(base, { page: "docs" })).toBe("/praticon-glyphs/docs/");
   });
 
   it("builds icon paths that round-trip", () => {

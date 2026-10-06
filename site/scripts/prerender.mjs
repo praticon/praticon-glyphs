@@ -31,6 +31,7 @@ function writePage(file, route) {
 
 writePage(join(dist, "index.html"), { page: "browse" });
 writePage(join(dist, "404.html"), { page: "not-found" });
+writePage(join(dist, "docs", "index.html"), { page: "docs" });
 for (const { name } of metadata) writePage(join(dist, "icons", name, "index.html"), { page: "browse", icon: name });
 
 // Social preview images (1200 × 630)
@@ -95,10 +96,10 @@ for (const icon of metadata) writeFileSync(join(dist, "og", `${icon.name}.png`),
 
 // Sitemap. robots.txt is only read at the domain root (praticon.github.io), which
 // this project site does not control, so submit the sitemap in Search Console instead.
-const urls = [SITE_URL, ...metadata.map(({ name }) => `${SITE_URL}icons/${name}/`)];
+const urls = [SITE_URL, `${SITE_URL}docs/`, ...metadata.map(({ name }) => `${SITE_URL}icons/${name}/`)];
 writeFileSync(
   join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}\n</urlset>\n`,
 );
 
-console.log(`✔ pre-rendered ${metadata.length + 2} pages and ${metadata.length + 1} preview images`);
+console.log(`✔ pre-rendered ${metadata.length + 3} pages and ${metadata.length + 1} preview images`);

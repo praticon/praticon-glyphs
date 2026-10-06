@@ -1,10 +1,17 @@
 /** Public URL of the deployed site, used for canonical links and social previews. */
 export const SITE_URL = "https://praticon.github.io/praticon-glyphs/";
 
-export type Route = { page: "browse"; icon?: string } | { page: "not-found" };
+export type Route = { page: "browse"; icon?: string } | { page: "docs" } | { page: "not-found" };
 
 /** URL path of an icon's page, relative to the site's base path. */
 export const iconPath = (base: string, name: string) => `${base}icons/${name}/`;
+
+/** URL path of the Getting started page. */
+export const docsPath = (base: string) => `${base}docs/`;
+
+/** URL path for any route. */
+export const pathFor = (base: string, route: Route) =>
+  route.page === "docs" ? docsPath(base) : route.page === "browse" && route.icon ? iconPath(base, route.icon) : base;
 
 /**
  * Maps a pathname to a page. `base` is Vite's BASE_URL (e.g. "/praticon-glyphs/");
@@ -14,6 +21,7 @@ export function parseRoute(pathname: string, base: string, iconNames: ReadonlySe
   if (!pathname.startsWith(base) && `${pathname}/` !== base) return { page: "not-found" };
   const rest = pathname.slice(base.length).replace(/\/+$/, "");
   if (rest === "" || rest === "index.html") return { page: "browse" };
+  if (rest === "docs") return { page: "docs" };
   const match = rest.match(/^icons\/([a-z0-9-]+)$/);
   if (match && iconNames.has(match[1])) return { page: "browse", icon: match[1] };
   return { page: "not-found" };
