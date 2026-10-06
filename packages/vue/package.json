@@ -1,6 +1,6 @@
 {
   "name": "@praticon-glyphs/vue",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Praticon icons as tree-shakeable, typed Vue 3 components. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
