@@ -31,7 +31,7 @@ for (const name of names) {
     join(iconsDir, `${name}.ts`),
     `${header}import { createIcon } from "../create-icon.js";\n\n` +
       `/**\n * Praticon \`${name}\` icon.${tags.length ? `\n * Tags: ${tags.join(", ")}.` : ""}\n` +
-      ` * @see https://praticon.github.io/praticon-glyphs/#${name}\n */\n` +
+      ` * @see https://github.com/praticon/praticon-glyphs/blob/main/icons/outline/${name}.svg\n */\n` +
       `const ${component}Icon = createIcon(${JSON.stringify(name)}, [\n${node}\n]);\n\n` +
       `export { ${component}Icon as ${component}, ${component}Icon };\n` +
       `export default ${component}Icon;\n`,
