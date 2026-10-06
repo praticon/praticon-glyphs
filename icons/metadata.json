@@ -1,0 +1,685 @@
+[
+  {
+    "name": "arrow-down",
+    "category": "core-ui",
+    "tags": [
+      "down",
+      "descend",
+      "direction"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "arrow-left",
+    "category": "core-ui",
+    "tags": [
+      "back",
+      "previous",
+      "direction"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "arrow-right",
+    "category": "core-ui",
+    "tags": [
+      "forward",
+      "next",
+      "direction"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "arrow-up",
+    "category": "core-ui",
+    "tags": [
+      "up",
+      "ascend",
+      "direction"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "brackets",
+    "category": "code",
+    "tags": [
+      "braces",
+      "curly",
+      "object",
+      "block"
+    ],
+    "aliases": [
+      "braces"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "browser",
+    "category": "browser",
+    "tags": [
+      "window",
+      "web",
+      "page"
+    ],
+    "aliases": [
+      "window"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "cache",
+    "category": "browser",
+    "tags": [
+      "storage",
+      "fast",
+      "memory",
+      "database"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "check",
+    "category": "core-ui",
+    "tags": [
+      "done",
+      "tick",
+      "confirm",
+      "success"
+    ],
+    "aliases": [
+      "tick"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "chevron-down",
+    "category": "core-ui",
+    "tags": [
+      "expand",
+      "dropdown",
+      "caret"
+    ],
+    "aliases": [
+      "caret-down"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "chevron-left",
+    "category": "core-ui",
+    "tags": [
+      "back",
+      "previous",
+      "caret"
+    ],
+    "aliases": [
+      "caret-left"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "chevron-right",
+    "category": "core-ui",
+    "tags": [
+      "forward",
+      "next",
+      "caret"
+    ],
+    "aliases": [
+      "caret-right"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "chevron-up",
+    "category": "core-ui",
+    "tags": [
+      "collapse",
+      "caret"
+    ],
+    "aliases": [
+      "caret-up"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "close",
+    "category": "core-ui",
+    "tags": [
+      "x",
+      "cancel",
+      "dismiss",
+      "remove"
+    ],
+    "aliases": [
+      "x"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "code",
+    "category": "code",
+    "tags": [
+      "source",
+      "markup",
+      "html",
+      "angle-brackets"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "comment",
+    "category": "code",
+    "tags": [
+      "annotation",
+      "note",
+      "discussion"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "console",
+    "category": "browser",
+    "tags": [
+      "log",
+      "output",
+      "repl",
+      "prompt"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "cookie",
+    "category": "browser",
+    "tags": [
+      "storage",
+      "session",
+      "consent",
+      "tracking"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "copy",
+    "category": "core-ui",
+    "tags": [
+      "duplicate",
+      "clipboard",
+      "clone"
+    ],
+    "aliases": [
+      "duplicate"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "devtools",
+    "category": "browser",
+    "tags": [
+      "developer-tools",
+      "panel",
+      "dock"
+    ],
+    "aliases": [
+      "developer-tools"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "download",
+    "category": "core-ui",
+    "tags": [
+      "save",
+      "fetch",
+      "import"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "ellipsis",
+    "category": "core-ui",
+    "tags": [
+      "more",
+      "dots",
+      "overflow"
+    ],
+    "aliases": [
+      "more-horizontal"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "external-link",
+    "category": "core-ui",
+    "tags": [
+      "open",
+      "new-tab",
+      "outbound"
+    ],
+    "aliases": [
+      "open-in-new"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "eye",
+    "category": "core-ui",
+    "tags": [
+      "view",
+      "visible",
+      "preview",
+      "show"
+    ],
+    "aliases": [
+      "view"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "file",
+    "category": "core-ui",
+    "tags": [
+      "document",
+      "page"
+    ],
+    "aliases": [
+      "document"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "file-code",
+    "category": "code",
+    "tags": [
+      "source-file",
+      "script",
+      "document"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "filter",
+    "category": "core-ui",
+    "tags": [
+      "funnel",
+      "sort",
+      "refine"
+    ],
+    "aliases": [
+      "funnel"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "folder",
+    "category": "core-ui",
+    "tags": [
+      "directory",
+      "group"
+    ],
+    "aliases": [
+      "directory"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "format",
+    "category": "code",
+    "tags": [
+      "indent",
+      "prettify",
+      "beautify",
+      "align"
+    ],
+    "aliases": [
+      "indent"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "function",
+    "category": "code",
+    "tags": [
+      "method",
+      "lambda",
+      "math"
+    ],
+    "aliases": [
+      "fx"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "globe",
+    "category": "browser",
+    "tags": [
+      "internet",
+      "web",
+      "world",
+      "language"
+    ],
+    "aliases": [
+      "world"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "home",
+    "category": "core-ui",
+    "tags": [
+      "house",
+      "start",
+      "index"
+    ],
+    "aliases": [
+      "house"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "info",
+    "category": "core-ui",
+    "tags": [
+      "information",
+      "help",
+      "about"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "inspect",
+    "category": "browser",
+    "tags": [
+      "element",
+      "select",
+      "pick",
+      "cursor"
+    ],
+    "aliases": [
+      "inspect-element"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "link",
+    "category": "browser",
+    "tags": [
+      "url",
+      "chain",
+      "hyperlink",
+      "href"
+    ],
+    "aliases": [
+      "chain"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "menu",
+    "category": "core-ui",
+    "tags": [
+      "hamburger",
+      "navigation",
+      "lines"
+    ],
+    "aliases": [
+      "hamburger"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "minus",
+    "category": "core-ui",
+    "tags": [
+      "subtract",
+      "remove",
+      "collapse"
+    ],
+    "aliases": [
+      "subtract"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "network",
+    "category": "browser",
+    "tags": [
+      "topology",
+      "nodes",
+      "connection",
+      "lan"
+    ],
+    "aliases": [
+      "topology"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "pencil",
+    "category": "core-ui",
+    "tags": [
+      "edit",
+      "write",
+      "rename"
+    ],
+    "aliases": [
+      "edit"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "plus",
+    "category": "core-ui",
+    "tags": [
+      "add",
+      "new",
+      "create"
+    ],
+    "aliases": [
+      "add"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "refresh",
+    "category": "core-ui",
+    "tags": [
+      "reload",
+      "sync",
+      "retry"
+    ],
+    "aliases": [
+      "reload"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "regex",
+    "category": "code",
+    "tags": [
+      "regular-expression",
+      "pattern",
+      "match"
+    ],
+    "aliases": [
+      "regexp"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "search",
+    "category": "core-ui",
+    "tags": [
+      "find",
+      "magnifier",
+      "lookup"
+    ],
+    "aliases": [
+      "magnifier"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "settings",
+    "category": "core-ui",
+    "tags": [
+      "gear",
+      "cog",
+      "preferences",
+      "options"
+    ],
+    "aliases": [
+      "gear",
+      "cog"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "snippet",
+    "category": "code",
+    "tags": [
+      "fragment",
+      "excerpt",
+      "gist"
+    ],
+    "aliases": [
+      "code-fragment"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "tab",
+    "category": "browser",
+    "tags": [
+      "browser-tab",
+      "page",
+      "panel"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "terminal",
+    "category": "code",
+    "tags": [
+      "shell",
+      "cli",
+      "command-line",
+      "prompt"
+    ],
+    "aliases": [
+      "shell"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "trash",
+    "category": "core-ui",
+    "tags": [
+      "delete",
+      "remove",
+      "bin"
+    ],
+    "aliases": [
+      "delete"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "upload",
+    "category": "core-ui",
+    "tags": [
+      "send",
+      "export",
+      "publish"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "variable",
+    "category": "code",
+    "tags": [
+      "parameter",
+      "argument",
+      "x"
+    ],
+    "aliases": [],
+    "tier": "free",
+    "since": "0.1.0"
+  },
+  {
+    "name": "warning",
+    "category": "core-ui",
+    "tags": [
+      "alert",
+      "caution",
+      "error"
+    ],
+    "aliases": [
+      "alert-triangle"
+    ],
+    "tier": "free",
+    "since": "0.1.0"
+  }
+]

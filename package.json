@@ -1,0 +1,35 @@
+{
+  "name": "praticon-monorepo",
+  "private": true,
+  "description": "Praticon: crafted, grid-based SVG icons for web development.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@12.9.1",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint:icons": "tsx scripts/lint-icons.ts",
+    "optimize": "tsx scripts/optimize.ts",
+    "build:react": "tsx scripts/build-react.ts",
+    "generate": "pnpm lint:icons && pnpm optimize && pnpm build:react",
+    "build": "pnpm generate && pnpm -r build",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json",
+    "changeset": "changeset",
+    "release": "pnpm build && pnpm test && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "jsdom": "^30.1.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "svgo": "^4.1.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
