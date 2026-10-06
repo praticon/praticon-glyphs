@@ -67,12 +67,14 @@ The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
    Children may only be `path`, `circle`, `ellipse`, `rect`, `line`, `polyline` or `polygon`, with geometry attributes only.
 3. Add an entry to `icons/metadata.json`.
 4. Run `pnpm build && pnpm test`. The linter checks the spec, and new snapshots show the generated component.
+5. Run `pnpm audit:icons <name>` and make sure the icon is not a near copy of another library's (score below 0.8 unless it is a universal shape like a chevron).
 
 ### Development
 
 ```sh
 pnpm install
 pnpm lint:icons   # check icons against the design spec
+pnpm audit:icons  # compare icons with Lucide, Tabler, Feather, Heroicons and each other
 pnpm build        # lint → optimise (SVGO) → generate React → compile
 pnpm test         # Vitest
 pnpm typecheck
