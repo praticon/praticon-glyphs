@@ -105,6 +105,14 @@ test.describe("icon pages", () => {
     await expect(page.locator(".detail")).toBeVisible();
   });
 
+  test("the drawing animation leaves solid strokes, so closed shapes keep clean corners", async ({ page }) => {
+    await page.goto("icons/terminal/");
+    const shapes = page.locator(".detail svg.draw > *");
+    await expect
+      .poll(() => shapes.evaluateAll((all) => all.map((shape) => getComputedStyle(shape).strokeDasharray)), { timeout: 5000 })
+      .toEqual(Array(3).fill("none"));
+  });
+
   test("an old #name link moves to the icon's page", async ({ page }) => {
     await page.goto("#terminal");
     await expect(page).toHaveURL(/\/icons\/terminal\/$/);
