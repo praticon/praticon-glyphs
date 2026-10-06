@@ -83,7 +83,10 @@ pnpm build        # lint → optimise (SVGO) → generate React → compile
 pnpm test         # Vitest
 pnpm typecheck
 pnpm --filter @praticon-glyphs/site dev   # run the icon browser locally
+pnpm test:e2e     # Playwright: test the built site in Chromium, including axe accessibility checks
 ```
+
+The browser tests run against the production build, so run `pnpm build` first. The first time, install Chromium with `pnpm --filter @praticon-glyphs/site exec playwright install chromium`.
 
 ## License
 

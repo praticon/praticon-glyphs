@@ -1257,6 +1257,8 @@ kbd {
 
 .doc-section {
   display: grid;
+  /* minmax(0, …) lets long code lines scroll inside their block instead of widening the page. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 14px;
   margin-top: 56px;
   scroll-margin-top: calc(var(--header-height) + 24px);

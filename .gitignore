@@ -10,3 +10,7 @@ packages/core/svg/
 packages/core/src/generated/
 packages/react/src/icons/
 packages/core/metadata.json
+
+# Playwright
+test-results/
+playwright-report/
