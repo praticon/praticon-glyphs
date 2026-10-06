@@ -7,6 +7,8 @@
 - `currentColor` everywhere, so icons inherit your text colour
 - Typed, tree-shakeable React components: you ship only the icons you import
 
+Browse and copy the icons at **[praticon.github.io/praticon-glyphs](https://praticon.github.io/praticon-glyphs/)**.
+
 ## Install
 
 ```sh
@@ -78,6 +80,7 @@ pnpm audit:icons  # compare icons with Lucide, Tabler, Feather, Heroicons and ea
 pnpm build        # lint → optimise (SVGO) → generate React → compile
 pnpm test         # Vitest
 pnpm typecheck
+pnpm --filter @praticon-glyphs/site dev   # run the icon browser locally
 ```
 
 ## License
