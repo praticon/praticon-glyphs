@@ -5,7 +5,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { shapeBox } from "./geometry.ts";
-import { CATEGORIES, SOURCE_DIR, listSvgNames, parseSvg, readMetadata, type Attrs } from "./lib.ts";
+import { SOURCE_DIR, categories, listSvgNames, parseSvg, readMetadata, type Attrs } from "./lib.ts";
 
 const REQUIRED_ROOT: Attrs = {
   xmlns: "http://www.w3.org/2000/svg",
@@ -92,7 +92,7 @@ for (const entry of metadata) {
   if (seen.has(name)) report(name, "duplicate metadata entry");
   seen.add(name);
   if (!names.includes(name)) report(name, "metadata entry has no SVG in icons/outline");
-  if (!(CATEGORIES as readonly string[]).includes(entry.category)) report(name, `unknown category "${entry.category}" (add it to CATEGORIES in scripts/lib.ts)`);
+  if (!(categories as readonly string[]).includes(entry.category)) report(name, `unknown category "${entry.category}" (add it to packages/core/src/categories.ts)`);
   if (entry.tier !== "free") report(name, `tier must be "free"; Pro icons never go in this public repo`);
   if (!SEMVER_RE.test(entry.since ?? "")) report(name, `"since" must be a version like 0.1.0`);
   if (!Array.isArray(entry.tags) || entry.tags.length === 0) report(name, "needs at least one tag");

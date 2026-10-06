@@ -3,15 +3,20 @@ import { createElement, createRef, act } from "react";
 import { createRoot } from "react-dom/client";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { metadata } from "../../core/src/index.js";
+import { icons, metadata, type IconNode as CoreIconNode } from "../../core/src/index.js";
+import { toPascalCase } from "../src/to-pascal-case.js";
 import * as Praticon from "../src/index.js";
 
 const { ArrowLeft, createIcon } = Praticon;
 const GitBranchSafe = createIcon("git-branch-safe", [["circle", { cx: "6", cy: "6", r: "2" }]]);
 
 const render = renderToStaticMarkup;
-const toPascalCase = (name: string) => name.replace(/(^|-)([a-z0-9])/g, (_, __, c: string) => c.toUpperCase());
 const registry = Praticon as unknown as Record<string, Praticon.PraticonIcon>;
+
+// Compile-time check that React's copy of IconNode stays in step with core's.
+const reactNode: Praticon.IconNode = icons.check satisfies CoreIconNode;
+const coreNode: CoreIconNode = reactNode;
+void coreNode;
 
 describe("@praticon-glyphs/react", () => {
   it("exports a component and an *Icon alias for every icon", () => {

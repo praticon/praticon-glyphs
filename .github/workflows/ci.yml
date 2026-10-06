@@ -19,9 +19,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Lint icons
-        run: pnpm lint:icons
-      - name: Build
+      - name: Lint icons and build
         run: pnpm build
       - name: Typecheck
         run: pnpm typecheck

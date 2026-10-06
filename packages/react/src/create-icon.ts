@@ -1,7 +1,11 @@
 import { createElement, forwardRef } from "react";
 import type { ForwardRefExoticComponent, RefAttributes, SVGProps } from "react";
+import { toPascalCase } from "./to-pascal-case.js";
 
-/** A single SVG child element: `[tagName, attributes]`. */
+/**
+ * A single SVG child element: `[tagName, attributes]`. Mirrors `IconNode` in
+ * @praticon-glyphs/core so this package has no runtime dependency on it.
+ */
 export type IconNode = ReadonlyArray<readonly [tag: string, attrs: Readonly<Record<string, string>>]>;
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
@@ -14,9 +18,6 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
 }
 
 export type PraticonIcon = ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
-
-const toPascalCase = (name: string) =>
-  name.replace(/(^|-)([a-z0-9])/g, (_, __, char: string) => char.toUpperCase());
 
 /**
  * Builds an icon component from its SVG children. Used by the generated icons,
