@@ -296,6 +296,14 @@ kbd {
   grid-template-columns: minmax(0, 1fr) 360px;
 }
 
+.notice {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
 .count {
   margin-bottom: 12px;
   color: var(--muted);
@@ -312,6 +320,8 @@ kbd {
 }
 
 .tile {
+  color: inherit;
+  text-decoration: none;
   display: grid;
   justify-items: center;
   align-content: center;
@@ -331,7 +341,7 @@ kbd {
   transform: translateY(-1px);
 }
 
-.tile[aria-pressed="true"] {
+.tile[aria-current="page"] {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }

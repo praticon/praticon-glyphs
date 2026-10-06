@@ -1,8 +1,10 @@
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { categories, metadata, type IconCategory, type IconMetadata, type IconName } from "@praticon-glyphs/core";
 import * as Praticon from "@praticon-glyphs/react";
 import corePackage from "@praticon-glyphs/core/package.json";
+import { iconPath, parseRoute, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
+import { headFor } from "./seo.ts";
 import { DEFAULT_STYLE, componentName, jsxSnippet, svgSnippet, type IconStyle } from "./snippets.ts";
 
 const components = Praticon as unknown as Record<string, Praticon.PraticonIcon>;
@@ -38,27 +40,40 @@ function downloadSvg(name: string, svg: string) {
   URL.revokeObjectURL(url);
 }
 
-const nameFromHash = () => {
-  const name = decodeURIComponent(location.hash.slice(1));
-  return metadata.some((icon) => icon.name === name) ? name : undefined;
-};
+export const BASE = import.meta.env.BASE_URL;
+const ICON_NAMES = new Set(metadata.map((icon) => icon.name));
 
-export function App() {
+/** The route for the current browser location. Only call this in the browser. */
+export const currentRoute = () => parseRoute(location.pathname, BASE, ICON_NAMES);
+
+/** Plain left clicks are handled in the app; modified clicks open links as usual. */
+const isPlainClick = (event: MouseEvent) =>
+  event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+
+export function App({ initialRoute }: { initialRoute: Route }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<IconCategory | undefined>();
   const [style, setStyle] = useState<IconStyle>(DEFAULT_STYLE);
-  const [selected, setSelected] = useState<string | undefined>(nameFromHash);
+  const [route, setRoute] = useState<Route>(initialRoute);
   const [toast, setToast] = useState<string | undefined>();
   const searchRef = useRef<HTMLInputElement>(null);
+
+  const selected = route.page === "browse" ? route.icon : undefined;
+  const selectedRef = useRef(selected);
+  selectedRef.current = selected;
 
   const deferredQuery = useDeferredValue(query);
   const results = useMemo(() => searchIcons(metadata, deferredQuery, category), [deferredQuery, category]);
   const selectedIcon = metadata.find((icon) => icon.name === selected);
 
   const select = useCallback((name: string | undefined) => {
-    setSelected(name);
-    history.replaceState(null, "", name ? `#${name}` : location.pathname);
+    setRoute({ page: "browse", icon: name });
+    history.pushState(null, "", name ? iconPath(BASE, name) : BASE);
   }, []);
+
+  useEffect(() => {
+    document.title = headFor(route, metadata).title;
+  }, [route]);
 
   const notify = useCallback((message: string) => {
     setToast(message);
@@ -71,16 +86,23 @@ export function App() {
       if (event.key === "/" && !typing) {
         event.preventDefault();
         searchRef.current?.focus();
-      } else if (event.key === "Escape") {
+      } else if (event.key === "Escape" && selectedRef.current) {
         select(undefined);
       }
     };
-    const onHash = () => setSelected(nameFromHash());
+    const onPopState = () => setRoute(currentRoute());
+    onPopState();
+    // Links from before icon pages existed point at #name; move them to the icon's page.
+    const legacy = decodeURIComponent(location.hash.slice(1));
+    if (ICON_NAMES.has(legacy)) {
+      history.replaceState(null, "", iconPath(BASE, legacy));
+      setRoute({ page: "browse", icon: legacy });
+    }
     window.addEventListener("keydown", onKey);
-    window.addEventListener("hashchange", onHash);
+    window.addEventListener("popstate", onPopState);
     return () => {
       window.removeEventListener("keydown", onKey);
-      window.removeEventListener("hashchange", onHash);
+      window.removeEventListener("popstate", onPopState);
     };
   }, [select]);
 
@@ -142,6 +164,18 @@ export function App() {
 
       <main className="layout">
         <div className="results">
+          {route.page === "not-found" && (
+            <p className="notice" role="status">
+              That page does not exist, but every Praticon icon is below.{" "}
+              <a className="text-link" href={BASE} onClick={(event) => {
+                if (!isPlainClick(event)) return;
+                event.preventDefault();
+                select(undefined);
+              }}>
+                Go to the home page
+              </a>
+            </p>
+          )}
           <p className="count" aria-live="polite">
             {results.length === metadata.length ? `${results.length} icons` : `${results.length} of ${metadata.length} icons`}
           </p>
@@ -151,15 +185,19 @@ export function App() {
                 const Icon = iconComponent(icon.name);
                 return (
                   <li key={icon.name}>
-                    <button
-                      type="button"
+                    <a
                       className="tile"
-                      aria-pressed={icon.name === selected}
-                      onClick={() => select(icon.name === selected ? undefined : icon.name)}
+                      href={iconPath(BASE, icon.name)}
+                      aria-current={icon.name === selected ? "page" : undefined}
+                      onClick={(event) => {
+                        if (!isPlainClick(event)) return;
+                        event.preventDefault();
+                        select(icon.name === selected ? undefined : icon.name);
+                      }}
                     >
-                      <Icon size={style.size} strokeWidth={style.strokeWidth} />
+                      <Icon size={style.size} strokeWidth={style.strokeWidth} aria-hidden="true" />
                       <span className="tile-name mono">{icon.name}</span>
-                    </button>
+                    </a>
                   </li>
                 );
               })}
