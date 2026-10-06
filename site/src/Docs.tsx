@@ -48,7 +48,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 export function Docs({ onCopy }: { onCopy: (text: string) => void }) {
   const code = (text: string) => <CodeBlock code={text} onCopy={onCopy} />;
   return (
-    <main className="docs">
+    <main id="main" className="docs">
       <nav className="doc-toc" aria-label="On this page">
         <p className="toc-title">On this page</p>
         <ol>

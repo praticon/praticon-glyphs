@@ -7,6 +7,14 @@
     <title>Praticon Icons</title>
     <!--/head-->
     <meta name="theme-color" content="#5b21b6" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Apply a saved theme before the first paint, so the page never flashes the wrong one.
+      try {
+        var theme = localStorage.getItem("praticon:theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch (error) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
