@@ -16,7 +16,7 @@
     "generate": "pnpm lint:icons && pnpm optimize && pnpm build:react",
     "build": "pnpm generate && pnpm -r build",
     "test": "vitest run",
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && pnpm --filter @praticon-glyphs/site typecheck",
     "changeset": "changeset",
     "release": "pnpm build && pnpm test && changeset publish"
   },
