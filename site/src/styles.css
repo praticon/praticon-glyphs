@@ -699,6 +699,8 @@ kbd {
 
 .toolbar-inner {
   display: grid;
+  /* minmax(0, …) keeps the scrolling chip row from widening the toolbar. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   max-width: var(--page);
   margin: 0 auto;
@@ -748,8 +750,26 @@ kbd {
 
 .tabs-filter {
   display: flex;
-  flex-wrap: wrap;
+  flex: 1 1 100%;
   gap: 6px;
+  min-width: 0;
+  /* One row that scrolls sideways, so ten categories never push the grid off a phone screen. */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  /* Room for focus rings, which overflow would otherwise clip, and for the
+     last chip to scroll clear of the fade. */
+  margin: -3px;
+  padding: 3px 32px 3px 3px;
+  mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
+}
+
+.tabs-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs-filter .chip {
+  flex: none;
 }
 
 .chip {

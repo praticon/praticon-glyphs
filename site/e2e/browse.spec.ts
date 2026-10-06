@@ -182,6 +182,16 @@ test.describe("browsing", () => {
     await expect(page.getByText("No icons match")).toBeVisible();
   });
 
+  test("every category chip can be reached and filters the grid", async ({ page }) => {
+    await page.goto("");
+    const last = page.getByRole("button", { name: /^Security & speed/ });
+    await last.click();
+    await expect(last).toHaveAttribute("aria-pressed", "true");
+    for (const name of await tileNames(page)) {
+      expect(metadata.find((icon) => icon.name === name)?.category, name).toBe("security");
+    }
+  });
+
   test("hovering a tile shows its copy button, which copies JSX at the chosen size", async ({ page }) => {
     await page.goto("");
     const cell = page.locator(".tile-cell").first();
