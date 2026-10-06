@@ -1,6 +1,6 @@
 {
   "name": "@praticon-glyphs/svelte",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Praticon icons as typed Svelte 5 components. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
