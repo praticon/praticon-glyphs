@@ -73,6 +73,8 @@ The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 
 ### Development
 
+Requires Node 24 or later, the version `.nvmrc` pins and CI uses. Run `nvm use` (or fnm or Volta) to switch to it.
+
 ```sh
 pnpm install
 pnpm lint:icons   # check icons against the design spec
