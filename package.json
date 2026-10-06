@@ -6,7 +6,7 @@
   "type": "module",
   "packageManager": "pnpm@12.9.1",
   "engines": {
-    "node": ">=20.11"
+    "node": ">=24"
   },
   "scripts": {
     "lint:icons": "tsx scripts/lint-icons.ts",
