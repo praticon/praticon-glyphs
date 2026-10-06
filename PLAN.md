@@ -80,6 +80,9 @@ No framework, language or company logos (React, Vue, GitHub, AWS, …). They are
 | Stroke width | 2 px (adjustable via prop) |
 | Stroke caps / joins | Round / Round |
 | Corner radius | 2 px (outer), 1 px (inner details) |
+| Corners | Always rounded; no cut (45°) corners |
+| Outlines | Closed and connected; no gaps or broken strokes |
+| Uniqueness | Must not copy another library: `pnpm audit:icons` below 0.8, except universal shapes (chevrons, plus, …) |
 | Colour | `currentColor` only, never hard-coded |
 | Fills | None in outline variant |
 | Min. legible size | Must read clearly at 16 px |
