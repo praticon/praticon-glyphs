@@ -200,7 +200,7 @@ Requirements:
 - [x] Create the GitHub org: `praticon`
 - [x] npm account: `kronos456`
 - [x] npm org: `praticon-glyphs`
-- [ ] Enable 2FA on npm (required to publish)
+- [x] Enable 2FA on npm (required to publish)
 - [x] Choose the focus: web development (Section 3)
 - [x] Create the monorepo skeleton, the 24px grid template and the SVGO config
 - [x] Add the MIT LICENSE and a README
@@ -209,7 +209,7 @@ Requirements:
 - [x] Design 50 icons following the spec: Core UI + Code & editor + Browser & web
 - [x] `lint-icons` script that checks the design rules automatically
 - [x] `build-react` generator with tests
-- [ ] Publish `@praticon-glyphs/core@0.1.0` and `@praticon-glyphs/react@0.1.0` (each `package.json` needs `"publishConfig": { "access": "public" }`) (packages ready; blocked on npm 2FA)
+- [x] Publish `@praticon-glyphs/core@0.1.0` and `@praticon-glyphs/react@0.1.0` (published 2026-10-06)
 
 ### Phase 2: Icon browser site (Weeks 5–6)
 - [ ] Search by name, tag and alias
@@ -221,7 +221,7 @@ Requirements:
 - [ ] Cover all web-dev categories with the most common icons
 - [ ] Gather feedback from developers on missing icons
 - [ ] Add Vue and Svelte packages
-- [ ] GitHub Actions: lint, build, test (CI ✅ done), release with Changesets (todo)
+- [x] GitHub Actions: lint, build, test, icon audit, and release with Changesets through npm trusted publishing
 - [ ] Launch the free set on Product Hunt, Reddit, X and Dev.to
 
 ### Phase 4: Praticon Pro (Months 4–6)
