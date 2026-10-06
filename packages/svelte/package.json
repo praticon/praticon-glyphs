@@ -1,0 +1,49 @@
+{
+  "name": "@praticon-glyphs/svelte",
+  "version": "0.1.2",
+  "description": "Praticon icons as typed Svelte 5 components. Crafted, grid-based icons for web development.",
+  "license": "MIT",
+  "author": "kronos456",
+  "homepage": "https://praticon.github.io/praticon-glyphs/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praticon/praticon-glyphs.git",
+    "directory": "packages/svelte"
+  },
+  "bugs": "https://github.com/praticon/praticon-glyphs/issues",
+  "keywords": ["icons", "svelte", "svelte5", "svg", "svelte-icons", "web-development", "praticon"],
+  "type": "module",
+  "sideEffects": false,
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.svelte.d.ts",
+      "svelte": "./dist/icons/*.svelte",
+      "default": "./dist/icons/*.svelte"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "peerDependencies": {
+    "svelte": ">=5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "svelte-package -i src -o dist",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^3.0.0",
+    "svelte": "^5.57.1",
+    "svelte-check": "^4.7.6",
+    "typescript": "^6.0.3"
+  }
+}

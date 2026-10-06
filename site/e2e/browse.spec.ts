@@ -66,7 +66,7 @@ test.describe("keyboard", () => {
     await expect(page.getByRole("searchbox")).toBeFocused();
   });
 
-  test("C copies the focused tile's JSX", async ({ page }) => {
+  test("C copies the focused tile's code", async ({ page }) => {
     await page.goto("");
     const names = await tileNames(page);
     await page.locator("a.tile").nth(1).focus();
@@ -105,24 +105,54 @@ test.describe("icon pages", () => {
     await expect(page.locator(".detail")).toBeVisible();
   });
 
+  test("the drawing animation leaves solid strokes, so closed shapes keep clean corners", async ({ page }) => {
+    await page.goto("icons/terminal/");
+    const shapes = page.locator(".detail svg.draw > *");
+    await expect
+      .poll(() => shapes.evaluateAll((all) => all.map((shape) => getComputedStyle(shape).strokeDasharray)), { timeout: 5000 })
+      .toEqual(Array(3).fill("none"));
+  });
+
   test("an old #name link moves to the icon's page", async ({ page }) => {
     await page.goto("#terminal");
     await expect(page).toHaveURL(/\/icons\/terminal\/$/);
     await expect(page.locator(".detail")).toBeVisible();
   });
 
-  test("the panel copies JSX and SVG and downloads the SVG", async ({ page }) => {
+  test("the panel copies code for each format and downloads the SVG", async ({ page }) => {
     await page.goto("icons/terminal/");
-    await page.locator(".detail").getByRole("button", { name: "Copy JSX" }).click();
+    const panel = page.locator(".detail");
+    await panel.getByRole("button", { name: "Copy React" }).click();
     await expectClipboardEnd(page, "<Terminal />");
 
-    await page.getByRole("tab", { name: "SVG" }).click();
-    await page.locator(".detail").getByRole("button", { name: "Copy SVG" }).click();
+    await panel.getByRole("tab", { name: "Vue" }).click();
+    await panel.getByRole("button", { name: "Copy Vue" }).click();
+    await expectClipboardEnd(page, "<Terminal />\n</template>");
+
+    await panel.getByRole("tab", { name: "Svelte" }).click();
+    await panel.getByRole("button", { name: "Copy Svelte" }).click();
+    await expectClipboardEnd(page, '</script>\n\n<Terminal />');
+
+    await panel.getByRole("tab", { name: "SVG" }).click();
+    await panel.getByRole("button", { name: "Copy SVG" }).click();
     await expectClipboardEnd(page, "</svg>");
 
     const download = page.waitForEvent("download");
-    await page.locator(".detail").getByRole("button", { name: "SVG", exact: true }).click();
+    await panel.getByRole("button", { name: "SVG", exact: true }).click();
     expect((await download).suggestedFilename()).toBe("terminal.svg");
+  });
+
+  test("the chosen format is remembered and used by the grid's copy buttons", async ({ page }) => {
+    await page.goto("icons/terminal/");
+    await page.locator(".detail").getByRole("tab", { name: "Vue" }).click();
+    await page.reload();
+    await expect(page.locator(".detail").getByRole("tab", { name: "Vue" })).toHaveAttribute("aria-selected", "true");
+
+    const cell = page.locator(".tile-cell").first();
+    const name = (await cell.locator("a.tile").getAttribute("data-name"))!;
+    await cell.hover();
+    await cell.locator(".tile-copy").click();
+    await expectClipboardEnd(page, `<${componentName(name)} />\n</template>`);
   });
 
   test("unknown pages show a notice and every icon", async ({ page }) => {

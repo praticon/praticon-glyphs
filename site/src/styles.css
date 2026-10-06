@@ -667,8 +667,15 @@ kbd {
   animation-delay: calc(var(--i, 0) * 0.12s);
 }
 
+/* The dash is dropped on the last frame: left in place, its round ends would poke out
+   at the start of closed shapes such as rectangles, where a join belongs. */
 @keyframes draw {
+  99.9% {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
   to {
+    stroke-dasharray: none;
     stroke-dashoffset: 0;
   }
 }
@@ -1585,6 +1592,7 @@ tr:last-child td {
   }
 
   .draw > * {
+    stroke-dasharray: none;
     stroke-dashoffset: 0;
   }
 }

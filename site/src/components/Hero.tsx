@@ -31,7 +31,7 @@ export function Hero({
         </Heading>
         <p className="hero-lede">
           {metadata.length} icons for developer tools, docs and dashboards, each drawn by hand on a 24-unit grid. Use
-          them as typed React components or as plain SVG.
+          them as typed React, Vue or Svelte components, or as plain SVG.
         </p>
         <div className="hero-actions">
           <a className="button primary large" href="#icons">

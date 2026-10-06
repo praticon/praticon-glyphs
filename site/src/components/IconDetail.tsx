@@ -1,8 +1,7 @@
-import { useState } from "react";
 import type { IconMetadata, IconName } from "@praticon-glyphs/core";
 import { CloseIcon, CopyIcon, DownloadIcon, LinkIcon } from "@praticon-glyphs/react";
 import { SITE_URL } from "../routes.ts";
-import { jsxSnippet, svgSnippet, type IconStyle } from "../snippets.ts";
+import { FORMATS, snippet, svgSnippet, type Format, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
 import { DrawnIcon, GridGuide } from "./DrawnIcon.tsx";
 import { iconComponent } from "./IconGrid.tsx";
@@ -11,6 +10,8 @@ import { CATEGORY_LABELS } from "./Toolbar.tsx";
 export function IconDetail({
   icon,
   style,
+  format,
+  onFormat,
   isSaved,
   headingLevel,
   onClose,
@@ -20,6 +21,8 @@ export function IconDetail({
 }: {
   icon: IconMetadata;
   style: IconStyle;
+  format: Format;
+  onFormat: (format: Format) => void;
   isSaved: boolean;
   headingLevel: "h1" | "h2";
   onClose: () => void;
@@ -27,11 +30,11 @@ export function IconDetail({
   onDownload: (name: string, svg: string) => void;
   onToggleSaved: (name: string) => void;
 }) {
-  const [tab, setTab] = useState<"react" | "svg">("react");
   const Icon = iconComponent(icon.name);
   const Heading = headingLevel;
   const svg = svgSnippet(icon.name as IconName, style);
-  const code = tab === "react" ? jsxSnippet(icon.name, style) : svg;
+  const code = snippet(format, icon.name, style);
+  const label = FORMATS.find(([f]) => f === format)![1];
   const words = [...new Set([...icon.tags, ...icon.aliases])];
 
   return (
@@ -77,12 +80,11 @@ export function IconDetail({
 
       <div>
         <div className="tabs" role="tablist" aria-label="Snippet format">
-          <button type="button" role="tab" aria-selected={tab === "react"} onClick={() => setTab("react")}>
-            React
-          </button>
-          <button type="button" role="tab" aria-selected={tab === "svg"} onClick={() => setTab("svg")}>
-            SVG
-          </button>
+          {FORMATS.map(([value, name]) => (
+            <button key={value} type="button" role="tab" aria-selected={format === value} onClick={() => onFormat(value)}>
+              {name}
+            </button>
+          ))}
         </div>
         <pre className="code mono" tabIndex={0}>
           {code}
@@ -90,8 +92,8 @@ export function IconDetail({
       </div>
 
       <div className="actions">
-        <button type="button" className="button primary" onClick={() => onCopy(code, tab === "react" ? "JSX" : "SVG")}>
-          <CopyIcon size={16} aria-hidden="true" /> Copy {tab === "react" ? "JSX" : "SVG"}
+        <button type="button" className="button primary" onClick={() => onCopy(code, `${label} code`)}>
+          <CopyIcon size={16} aria-hidden="true" /> Copy {label}
         </button>
         <button type="button" className="button" onClick={() => onDownload(icon.name, svg)}>
           <DownloadIcon size={16} aria-hidden="true" /> SVG
