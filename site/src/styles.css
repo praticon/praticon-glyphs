@@ -327,10 +327,61 @@ kbd {
   background: var(--accent-soft);
 }
 
-.count {
+.results-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
   margin-bottom: 12px;
   color: var(--muted);
   font-size: 14px;
+}
+
+.shortcuts kbd {
+  padding: 0 5px;
+  font-size: 11px;
+}
+
+.tile-cell {
+  position: relative;
+}
+
+.tile-copy {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.tile-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Show the copy button on hover and while the tile has keyboard focus. */
+@media (hover: hover) {
+  .tile-cell:hover .tile-copy,
+  .tile-cell:focus-within .tile-copy {
+    opacity: 1;
+  }
+}
+
+/* Touch screens have no hover or keyboard shortcuts: copy from the icon panel instead. */
+@media (hover: none) {
+  .tile-copy,
+  .shortcuts {
+    display: none;
+  }
 }
 
 .grid {
@@ -343,6 +394,9 @@ kbd {
 }
 
 .tile {
+  /* Keep focused tiles clear of the sticky toolbar when the keyboard scrolls to them. */
+  scroll-margin-top: calc(var(--toolbar-height, 180px) + 16px);
+  scroll-margin-bottom: 16px;
   color: inherit;
   text-decoration: none;
   display: grid;

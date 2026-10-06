@@ -1,8 +1,9 @@
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 import { categories, metadata, type IconCategory, type IconMetadata, type IconName } from "@praticon-glyphs/core";
 import * as Praticon from "@praticon-glyphs/react";
 import corePackage from "@praticon-glyphs/core/package.json";
 import { Docs } from "./Docs.tsx";
+import { columnCount, nextIndex } from "./grid-nav.ts";
 import { docsPath, iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
 import { headFor } from "./seo.ts";
@@ -85,19 +86,60 @@ export function App({ initialRoute }: { initialRoute: Route }) {
     document.title = headFor(route, metadata).title;
   }, [route]);
 
+  // The sticky toolbar's height changes with the viewport width and wrapping;
+  // expose it so focused tiles can scroll clear of it (see .tile in styles.css).
+  useEffect(() => {
+    const toolbar = document.querySelector<HTMLElement>(".toolbar");
+    if (!toolbar) return;
+    const observer = new ResizeObserver(() =>
+      document.documentElement.style.setProperty("--toolbar-height", `${toolbar.offsetHeight}px`),
+    );
+    observer.observe(toolbar);
+    return () => observer.disconnect();
+  }, [route.page]);
+
   const notify = useCallback((message: string) => {
     setToast(message);
     window.setTimeout(() => setToast(undefined), 1800);
   }, []);
 
+  /** Copies an icon's JSX with the current size, stroke and colour. */
+  const copyJsx = useCallback(
+    async (name: string) =>
+      notify((await copyText(jsxSnippet(name, style))) ? `<${componentName(name)} /> copied` : "Copy failed, select the text instead"),
+    [notify, style],
+  );
+  const copyJsxRef = useRef(copyJsx);
+  copyJsxRef.current = copyJsx;
+
+  /** Arrow keys move between tiles, Home/End jump to the ends, C copies the focused icon. */
+  const onGridKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
+    const tile = (event.target as HTMLElement).closest<HTMLAnchorElement>("a.tile");
+    if (!tile || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === "c" || event.key === "C") {
+      event.preventDefault();
+      event.stopPropagation();
+      copyJsx(tile.dataset.name!);
+      return;
+    }
+    const tiles = Array.from(event.currentTarget.querySelectorAll<HTMLAnchorElement>("a.tile"));
+    const next = nextIndex(tiles.indexOf(tile), event.key, tiles.length, columnCount(tiles));
+    if (next === undefined) return;
+    event.preventDefault();
+    tiles[next].focus();
+  };
+
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
+    const onKey = (event: globalThis.KeyboardEvent) => {
       const typing = event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement;
       if (event.key === "/" && !typing) {
         event.preventDefault();
         searchRef.current?.focus();
       } else if (event.key === "Escape" && selectedRef.current) {
         select(undefined);
+      } else if ((event.key === "c" || event.key === "C") && !typing && selectedRef.current) {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        copyJsxRef.current(selectedRef.current);
       }
     };
     const onPopState = () => setRoute(currentRoute());
@@ -194,17 +236,23 @@ export function App({ initialRoute }: { initialRoute: Route }) {
               </a>
             </p>
           )}
-          <p className="count" aria-live="polite">
-            {results.length === metadata.length ? `${results.length} icons` : `${results.length} of ${metadata.length} icons`}
-          </p>
+          <div className="results-bar">
+            <p className="count" aria-live="polite">
+              {results.length === metadata.length ? `${results.length} icons` : `${results.length} of ${metadata.length} icons`}
+            </p>
+            <p className="shortcuts">
+              Arrow keys move · <kbd>Enter</kbd> open · <kbd>C</kbd> copy JSX
+            </p>
+          </div>
           {results.length ? (
-            <ul className="grid" style={iconStyle}>
+            <ul className="grid" style={iconStyle} onKeyDown={onGridKeyDown}>
               {results.map((icon) => {
                 const Icon = iconComponent(icon.name);
                 return (
-                  <li key={icon.name}>
+                  <li key={icon.name} className="tile-cell">
                     <a
                       className="tile"
+                      data-name={icon.name}
                       href={iconPath(BASE, icon.name)}
                       aria-current={icon.name === selected ? "page" : undefined}
                       onClick={(event) => {
@@ -216,6 +264,16 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                       <Icon size={style.size} strokeWidth={style.strokeWidth} aria-hidden="true" />
                       <span className="tile-name mono">{icon.name}</span>
                     </a>
+                    <button
+                      type="button"
+                      className="tile-copy"
+                      tabIndex={-1}
+                      aria-label={`Copy ${componentName(icon.name)} JSX`}
+                      title="Copy JSX"
+                      onClick={() => copyJsx(icon.name)}
+                    >
+                      <Praticon.Copy size={14} aria-hidden="true" />
+                    </button>
                   </li>
                 );
               })}
