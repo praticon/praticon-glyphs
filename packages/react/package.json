@@ -1,6 +1,6 @@
 {
   "name": "@praticon-glyphs/react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Praticon icons as tree-shakeable, typed React components. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
