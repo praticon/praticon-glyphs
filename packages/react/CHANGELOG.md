@@ -1,5 +1,11 @@
 # @praticon-glyphs/react
 
+## 0.1.2
+
+### Patch Changes
+
+- 8e61b36: Link the package homepage to the icon browser at praticon.github.io/praticon-glyphs, and the `@see` link on each React icon to that icon's own page on the site.
+
 ## 0.1.1
 
 ### Patch Changes
