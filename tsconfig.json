@@ -6,5 +6,7 @@
     "allowImportingTsExtensions": true,
     "types": ["node"]
   },
-  "include": ["scripts", "packages/*/src", "packages/*/test", "vitest.config.ts", "svgo.config.mjs"]
+  "include": ["scripts", "packages/*/src", "packages/*/test", "vitest.config.ts", "svgo.config.mjs"],
+  // The Svelte package imports .svelte files, which only svelte-check understands.
+  "exclude": ["packages/svelte"]
 }

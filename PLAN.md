@@ -163,7 +163,7 @@ praticon-glyphs/
 ├── scripts/
 │   ├── lint-icons.ts          # Enforce grid, stroke, currentColor, no fills
 │   ├── optimize.ts            # SVGO pass
-│   └── build-react.ts         # SVG → typed React components
+│   └── build-components.ts    # SVG → typed React, Vue and Svelte components
 ├── site/                      # Icon browser (search, customise, copy)
 ├── templates/
 │   └── grid-24.svg            # Design template for Figma / Illustrator / Inkscape

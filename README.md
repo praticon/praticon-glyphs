@@ -5,15 +5,17 @@
 - 50 icons today (Core UI, Code & editor, Browser & web), growing to ~200 free icons
 - Drawn on a 24×24 grid with a 2px round stroke, legible at 16px
 - `currentColor` everywhere, so icons inherit your text colour
-- Typed, tree-shakeable React components: you ship only the icons you import
+- Typed, tree-shakeable components for React, Vue and Svelte: you ship only the icons you import
 
 Browse and copy the icons at **[praticon.github.io/praticon-glyphs](https://praticon.github.io/praticon-glyphs/)**.
 
 ## Install
 
 ```sh
-npm i @praticon-glyphs/react
-# or: pnpm add @praticon-glyphs/react
+npm i @praticon-glyphs/react    # React 18+
+npm i @praticon-glyphs/vue      # Vue 3.3+
+npm i @praticon-glyphs/svelte   # Svelte 5+
+npm i @praticon-glyphs/core     # SVG files and toSvg() for anything else
 ```
 
 ## Usage
@@ -38,7 +40,35 @@ import { ArrowLeft, Terminal } from "@praticon-glyphs/react";
 - Every icon also has an `…Icon` alias (`ArrowLeftIcon`) for when a name clashes with your own components.
 - Each icon gets the classes `praticon praticon-<name>` for styling.
 
-### Without React
+### Vue
+
+```vue
+<script setup>
+import { ArrowLeft, Terminal } from "@praticon-glyphs/vue";
+</script>
+
+<template>
+  <ArrowLeft />
+  <Terminal :size="32" :stroke-width="1.5" color="#5b21b6" aria-label="Open terminal" />
+</template>
+```
+
+The props, defaults and accessibility rules are the same as in React. Put a `<title>` in the default slot to give an icon an accessible name, and use `createIcon()` to wrap your own icons.
+
+### Svelte
+
+```svelte
+<script>
+  import { ArrowLeft, Terminal } from "@praticon-glyphs/svelte";
+</script>
+
+<ArrowLeft />
+<Terminal size={32} strokeWidth={1.5} color="#5b21b6" aria-label="Open terminal" />
+```
+
+The package needs Svelte 5. Children such as a `<title>` render inside the `<svg>`, and the `Icon` component draws your own icons with the same props.
+
+### Without a framework
 
 `@praticon-glyphs/core` ships the optimised SVG files, the icon data and metadata:
 
@@ -48,7 +78,7 @@ import { toSvg, metadata } from "@praticon-glyphs/core";
 document.querySelector("#back").innerHTML = toSvg("arrow-left", { size: 20 });
 ```
 
-As with the React components, `toSvg` output is decorative (`aria-hidden="true"`) unless you pass `attrs: { "aria-label": "…" }`, which makes it `role="img"`. Unknown icon names and invalid attribute names throw.
+As with the components, `toSvg` output is decorative (`aria-hidden="true"`) unless you pass `attrs: { "aria-label": "…" }`, which makes it `role="img"`. Unknown icon names and invalid attribute names throw.
 
 The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 
@@ -57,6 +87,8 @@ The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 | Package | Description |
 |---|---|
 | [`@praticon-glyphs/react`](packages/react) | React components |
+| [`@praticon-glyphs/vue`](packages/vue) | Vue 3 components |
+| [`@praticon-glyphs/svelte`](packages/svelte) | Svelte 5 components |
 | [`@praticon-glyphs/core`](packages/core) | SVG files, icon data, metadata, `toSvg()` |
 
 ## Contributing an icon
@@ -79,7 +111,7 @@ Requires Node 24 or later, the version `.nvmrc` pins and CI uses. Run `nvm use` 
 pnpm install
 pnpm lint:icons   # check icons against the design spec
 pnpm audit:icons  # compare icons with Lucide, Tabler, Feather, Heroicons and each other
-pnpm build        # lint → optimise (SVGO) → generate React → compile
+pnpm build        # lint → optimise (SVGO) → generate React, Vue and Svelte → compile
 pnpm test         # Vitest
 pnpm typecheck
 pnpm --filter @praticon-glyphs/site dev   # run the icon browser locally

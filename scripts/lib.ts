@@ -12,6 +12,8 @@ export const SOURCE_DIR = join(ROOT, "icons", "outline");
 export const METADATA_FILE = join(ROOT, "icons", "metadata.json");
 export const CORE_DIR = join(ROOT, "packages", "core");
 export const REACT_DIR = join(ROOT, "packages", "react");
+export const VUE_DIR = join(ROOT, "packages", "vue");
+export const SVELTE_DIR = join(ROOT, "packages", "svelte");
 
 export type Attrs = Record<string, string>;
 
