@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { metadata } from "@praticon-glyphs/core";
 import { componentName } from "../src/snippets.ts";
 import { expectClipboardEnd, focusedTile, trackErrors } from "./helpers.ts";
 
@@ -9,6 +10,12 @@ test.beforeEach(({ page }) => {
   expectNoErrors = trackErrors(page);
 });
 test.afterEach(() => expectNoErrors());
+
+/** Search matches names, tags and aliases, so check all three. */
+const matches = (name: string | undefined, word: string) => {
+  const icon = metadata.find((entry) => entry.name === name)!;
+  return [icon.name, ...icon.tags, ...icon.aliases].some((text) => text.includes(word));
+};
 
 const tileNames = (page: Page) => page.locator("a.tile").evaluateAll((tiles) => tiles.map((t) => (t as HTMLElement).dataset.name));
 
@@ -168,11 +175,21 @@ test.describe("browsing", () => {
     const total = await page.locator("a.tile").count();
     await page.getByRole("searchbox").fill("arrow");
     await expect.poll(() => page.locator("a.tile").count()).toBeLessThan(total);
-    for (const name of await tileNames(page)) expect(name).toContain("arrow");
+    for (const name of await tileNames(page)) expect(matches(name, "arrow"), name).toBe(true);
 
     await page.getByRole("searchbox").fill("zzzz");
     await expect(page.locator("a.tile")).toHaveCount(0);
     await expect(page.getByText("No icons match")).toBeVisible();
+  });
+
+  test("every category chip can be reached and filters the grid", async ({ page }) => {
+    await page.goto("");
+    const last = page.getByRole("button", { name: /^Security & speed/ });
+    await last.click();
+    await expect(last).toHaveAttribute("aria-pressed", "true");
+    for (const name of await tileNames(page)) {
+      expect(metadata.find((icon) => icon.name === name)?.category, name).toBe("security");
+    }
   });
 
   test("hovering a tile shows its copy button, which copies JSX at the chosen size", async ({ page }) => {
@@ -211,6 +228,53 @@ test.describe("browsing", () => {
 
     await page.locator(".chip-saved").click();
     await expect(page.locator("a.tile")).toHaveCount(1);
+  });
+});
+
+test.describe("shareable links", () => {
+  test("a link opens the same search, category and style", async ({ page }) => {
+    await page.goto("?q=file&category=code&size=32&stroke=1.5&color=2563eb");
+    await expect(page.getByRole("searchbox")).toHaveValue("file");
+    await expect(page.getByRole("button", { name: /^Code & editor/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#icon-size")).toHaveValue("32");
+    await expect(page.locator("#icon-stroke")).toHaveValue("1.5");
+    await expect(page.getByRole("button", { name: "Colour #2563eb" })).toHaveAttribute("aria-pressed", "true");
+    for (const name of await tileNames(page)) expect(matches(name, "file"), name).toBe(true);
+  });
+
+  test("a shared link wins over the visitor's saved style", async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem("praticon:style", JSON.stringify({ size: 40, strokeWidth: 1 })));
+    await page.goto("?size=20");
+    await expect(page.locator("#icon-size")).toHaveValue("20");
+  });
+
+  test("the address bar follows the view, and icon pages keep it", async ({ page }) => {
+    await page.goto("");
+    await page.getByRole("searchbox").fill("arrow");
+    await page.locator("#icon-size").fill("32");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/\?q=arrow&size=32$/);
+
+    await page.locator("a.tile").first().click();
+    await expect(page).toHaveURL(/\/icons\/arrow-[a-z]+\/\?q=arrow&size=32$/);
+    await page.keyboard.press("Escape");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/\?q=arrow&size=32$/);
+
+    await page.getByRole("searchbox").fill("");
+    await page.getByRole("button", { name: "Reset" }).click();
+    await expect(page).toHaveURL(/\/praticon-glyphs\/$/);
+  });
+
+  test("Copy link to this view copies the public URL", async ({ page }) => {
+    await page.goto("?q=tab");
+    await page.getByRole("button", { name: "Copy link to this view" }).click();
+    await expectClipboardEnd(page, "https://praticon.github.io/praticon-glyphs/?q=tab");
+  });
+
+  test("invalid values in a link are ignored", async ({ page }) => {
+    await page.goto("?category=nope&size=999&color=red");
+    await expect(page.getByRole("button", { name: /^All/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#icon-size")).toHaveValue("24");
+    await expect(page).toHaveURL(/\/praticon-glyphs\/$/);
   });
 });
 

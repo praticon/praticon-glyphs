@@ -3,6 +3,7 @@ import { categories, metadata, type IconCategory } from "@praticon-glyphs/core";
 import { SearchIcon } from "@praticon-glyphs/react";
 import { DEFAULT_STYLE, type IconStyle } from "../snippets.ts";
 import { Star } from "../ui-icons.ts";
+import { SIZE, STROKE } from "../view-params.ts";
 
 export type Filter = IconCategory | "all" | "saved";
 
@@ -10,6 +11,13 @@ export const CATEGORY_LABELS: Record<IconCategory, string> = {
   "core-ui": "Core UI",
   code: "Code & editor",
   browser: "Browser & web",
+  layout: "Layout & CSS",
+  devices: "Devices",
+  git: "Version control",
+  data: "APIs & data",
+  deploy: "Build & deploy",
+  testing: "Testing",
+  security: "Security & speed",
 };
 
 const COLOR_PRESETS = ["#5b21b6", "#2563eb", "#059669", "#d97706", "#dc2626"];
@@ -87,9 +95,9 @@ function StyleControls({ style, onChange }: { style: IconStyle; onChange: (style
         <input
           id="icon-size"
           type="range"
-          min={16}
-          max={48}
-          step={4}
+          min={SIZE.min}
+          max={SIZE.max}
+          step={SIZE.step}
           value={style.size}
           onChange={(event) => onChange({ ...style, size: Number(event.target.value) })}
         />
@@ -100,9 +108,9 @@ function StyleControls({ style, onChange }: { style: IconStyle; onChange: (style
         <input
           id="icon-stroke"
           type="range"
-          min={1}
-          max={3}
-          step={0.25}
+          min={STROKE.min}
+          max={STROKE.max}
+          step={STROKE.step}
           value={style.strokeWidth}
           onChange={(event) => onChange({ ...style, strokeWidth: Number(event.target.value) })}
         />

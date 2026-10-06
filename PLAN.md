@@ -136,8 +136,8 @@ Every icon also gets an entry in `metadata.json`:
 | Language | TypeScript |
 | SVG optimisation | SVGO |
 | Code generation | Custom Node build script (SVG → components) |
-| Frameworks (v1) | React |
-| Frameworks (later) | Vue, Svelte, Web Components |
+| Frameworks | React, Vue, Svelte |
+| Frameworks (later) | Web Components |
 | Docs / browser site | Vite + React (or Astro) |
 | Testing | Vitest (snapshots of generated components) |
 | Versioning / release | Changesets |
@@ -158,8 +158,8 @@ praticon-glyphs/
 ├── packages/
 │   ├── core/                  # Core: optimised SVGs + metadata (npm: @praticon-glyphs/core)
 │   ├── react/                 # @praticon-glyphs/react (generated)
-│   ├── vue/                   # @praticon-glyphs/vue (later)
-│   └── svelte/                # @praticon-glyphs/svelte (later)
+│   ├── vue/                   # @praticon-glyphs/vue (generated)
+│   └── svelte/                # @praticon-glyphs/svelte (generated)
 ├── scripts/
 │   ├── lint-icons.ts          # Enforce grid, stroke, currentColor, no fills
 │   ├── optimize.ts            # SVGO pass
@@ -212,15 +212,15 @@ Requirements:
 - [x] Publish `@praticon-glyphs/core@0.1.0` and `@praticon-glyphs/react@0.1.0` (published 2026-10-06)
 
 ### Phase 2: Icon browser site (Weeks 5–6)
-- [ ] Search by name, tag and alias
-- [ ] Live controls for size, stroke and colour
-- [ ] Copy as SVG or JSX, and download the SVG
-- [ ] Deploy to `praticon.github.io/praticon-glyphs`
+- [x] Search by name, tag and alias
+- [x] Live controls for size, stroke and colour
+- [x] Copy as SVG or JSX, and download the SVG
+- [x] Deploy to `praticon.github.io/praticon-glyphs`
 
 ### Phase 3: Grow to 200 free icons (Weeks 7–12)
-- [ ] Cover all web-dev categories with the most common icons
+- [x] Cover all web-dev categories with the most common icons (200 icons in 10 categories)
 - [ ] Gather feedback from developers on missing icons
-- [ ] Add Vue and Svelte packages
+- [x] Add Vue and Svelte packages
 - [x] GitHub Actions: lint, build, test, icon audit, and release with Changesets through npm trusted publishing
 - [ ] Launch the free set on Product Hunt, Reddit, X and Dev.to
 
