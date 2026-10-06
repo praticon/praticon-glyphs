@@ -14,16 +14,23 @@ export interface ToSvgOptions {
 const escape = (value: string | number) =>
   String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
+const ATTR_NAME_RE = /^[a-zA-Z_:][\w:.-]*$/;
+
 const serialise = (attrs: Readonly<Record<string, string | number>>) =>
   Object.entries(attrs)
-    .map(([key, value]) => ` ${key}="${escape(value)}"`)
+    .map(([key, value]) => {
+      if (!ATTR_NAME_RE.test(key)) throw new Error(`Invalid SVG attribute name ${JSON.stringify(key)}`);
+      return ` ${key}="${escape(value)}"`;
+    })
     .join("");
 
 /** Renders an icon to an SVG markup string, for plain HTML or server templates. */
 export function toSvg(name: IconName, options: ToSvgOptions = {}): string {
+  if (!Object.hasOwn(icons, name)) throw new Error(`Unknown Praticon icon "${name}"`);
   const node = icons[name];
-  if (!node) throw new Error(`Unknown Praticon icon "${name}"`);
   const { size = 24, color = "currentColor", strokeWidth = 2, attrs = {} } = options;
+  // Decorative by default; becomes an image with an accessible name when labelled.
+  const labelled = Boolean(attrs["aria-label"] || attrs["aria-labelledby"]);
   const root = serialise({
     xmlns: "http://www.w3.org/2000/svg",
     width: size,
@@ -34,7 +41,7 @@ export function toSvg(name: IconName, options: ToSvgOptions = {}): string {
     "stroke-width": strokeWidth,
     "stroke-linecap": "round",
     "stroke-linejoin": "round",
-    "aria-hidden": "true",
+    ...(labelled ? { role: "img" } : { "aria-hidden": "true" }),
     ...attrs,
   });
   const children = node.map(([tag, childAttrs]) => `<${tag}${serialise(childAttrs)}/>`).join("");

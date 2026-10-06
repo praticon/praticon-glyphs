@@ -2,3 +2,5 @@ packages:
   - "packages/*"
 allowBuilds:
   esbuild: true
+  # feather-icons -> core-js: postinstall only prints a funding message
+  core-js: false
