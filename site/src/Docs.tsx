@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import * as Praticon from "@praticon-glyphs/react";
+import { CheckIcon, CopyIcon } from "@praticon-glyphs/react";
 
 const SECTIONS = [
   ["install", "Install"],
@@ -28,7 +28,7 @@ function CodeBlock({ code, onCopy }: { code: string; onCopy: (text: string) => v
           window.setTimeout(() => setCopied(false), 1500);
         }}
       >
-        {copied ? <Praticon.Check size={16} /> : <Praticon.Copy size={16} />}
+        {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
       </button>
     </div>
   );
@@ -48,7 +48,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 export function Docs({ onCopy }: { onCopy: (text: string) => void }) {
   const code = (text: string) => <CodeBlock code={text} onCopy={onCopy} />;
   return (
-    <main className="docs">
+    <main id="main" className="docs">
       <nav className="doc-toc" aria-label="On this page">
         <p className="toc-title">On this page</p>
         <ol>

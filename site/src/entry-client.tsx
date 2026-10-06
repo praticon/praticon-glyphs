@@ -2,6 +2,9 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { App, currentRoute } from "./App.tsx";
 import type { Route } from "./routes.ts";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/hanken-grotesk";
+import "@fontsource-variable/jetbrains-mono";
 import "./styles.css";
 
 const root = document.getElementById("root")!;
