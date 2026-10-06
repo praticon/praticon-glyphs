@@ -1,11 +1,11 @@
 name: Release
 
-# On every push to main, Changesets either opens/updates a "Version packages"
-# PR (when there are pending changesets), or publishes any package versions
-# that are not on npm yet (after that PR is merged).
+# Run by hand from the Actions tab. Changesets then either opens/updates a
+# "Version packages" PR (when there are pending changesets), or publishes any
+# package versions that are not on npm yet (after that PR is merged).
+# Switch to `push: branches: [main]` once releases should be automatic.
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
