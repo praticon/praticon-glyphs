@@ -17,7 +17,10 @@ function CodeBlock({ code, onCopy }: { code: string; onCopy: (text: string) => v
   const [copied, setCopied] = useState(false);
   return (
     <div className="code-block">
-      <pre className="code mono">{code}</pre>
+      {/* Focusable so keyboard users can scroll long lines. */}
+      <pre className="code mono" tabIndex={0}>
+        {code}
+      </pre>
       <button
         type="button"
         className="icon-button code-copy"
@@ -95,7 +98,8 @@ export function Toolbar() {
         </Section>
 
         <Section id="props" title="Props">
-          <div className="table-wrap">
+          {/* Focusable so keyboard users can scroll the table on narrow screens. */}
+          <div className="table-wrap" role="region" aria-label="Props" tabIndex={0}>
             <table>
               <thead>
                 <tr>
