@@ -1,0 +1,54 @@
+name: Icon request
+description: Ask for an icon that Praticon doesn't have yet.
+title: "Icon request: "
+labels: ["icon request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Please [search the site](https://praticon.github.io/praticon-glyphs/) first, since many icons are listed under tags and aliases too.
+        Logos of brands, frameworks or companies can't be added, because they are trademarks.
+  - type: input
+    id: icon-name
+    attributes:
+      label: Icon name
+      description: A kebab-case, noun-first name, such as `file-lock` or `git-tag`.
+      placeholder: file-lock
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Core UI
+        - Code & editor
+        - Browser & web
+        - Layout & CSS
+        - Devices
+        - Version control
+        - APIs & data
+        - Build & deploy
+        - Testing
+        - Security & speed
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Where would you use it?
+      description: The product or screen and what the icon should tell people. This helps us pick the right metaphor.
+    validations:
+      required: true
+  - type: textarea
+    id: search-terms
+    attributes:
+      label: Search terms
+      description: Words you'd type to find it. They become the icon's tags and aliases.
+      placeholder: secure file, encrypted, private
+  - type: textarea
+    id: references
+    attributes:
+      label: Sketch or references
+      description: Optional. A sketch, or a link to how other products show the idea. We draw every icon from scratch and don't copy other sets.

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://praticon.github.io/praticon-glyphs/docs/
+    about: Installation, props, accessibility, styling and TypeScript.

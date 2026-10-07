@@ -1,7 +1,7 @@
 /**
  * Runs after `vite build` and the SSR build. Writes a pre-rendered HTML page
- * for the home page and every icon, a 404 page, social preview images and a
- * sitemap into dist/.
+ * for the home page and every icon, a 404 page, social preview images, app
+ * icons with a web manifest, and a sitemap into dist/.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -93,6 +93,40 @@ const png = (svg) => new resvg.Resvg(svg, { font: { loadSystemFonts: true } }).r
 mkdirSync(join(dist, "og"), { recursive: true });
 writeFileSync(join(dist, "og", "praticon.png"), png(homeCard()));
 for (const icon of metadata) writeFileSync(join(dist, "og", `${icon.name}.png`), png(iconCard(icon)));
+
+// App icons for home screens and bookmarks, which don't accept the SVG favicon.
+// `inset` keeps the mark inside the safe zone of maskable and iOS icons, which get cropped.
+const appIcon = (size, { radius = 0, inset = 0.25 } = {}) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <rect width="${size}" height="${size}" rx="${radius * size}" fill="${ACCENT}"/>
+  ${iconSvg("brackets", size * inset, size * inset, size * (1 - 2 * inset), "#ffffff")}
+</svg>`;
+writeFileSync(join(dist, "apple-touch-icon.png"), png(appIcon(180)));
+writeFileSync(join(dist, "icon-192.png"), png(appIcon(192, { radius: 0.25 })));
+writeFileSync(join(dist, "icon-512.png"), png(appIcon(512, { radius: 0.25 })));
+writeFileSync(join(dist, "icon-maskable-512.png"), png(appIcon(512, { inset: 0.3 })));
+writeFileSync(
+  join(dist, "manifest.webmanifest"),
+  `${JSON.stringify(
+    {
+      name: "Praticon Icons",
+      short_name: "Praticon",
+      description: `${metadata.length} crafted, grid-based SVG icons for web development.`,
+      start_url: "./",
+      scope: "./",
+      display: "standalone",
+      theme_color: ACCENT,
+      background_color: "#f6f6f9",
+      icons: [
+        { src: "icon-192.png", sizes: "192x192", type: "image/png" },
+        { src: "icon-512.png", sizes: "512x512", type: "image/png" },
+        { src: "icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      ],
+    },
+    null,
+    2,
+  )}\n`,
+);
 
 // Sitemap. robots.txt is only read at the domain root (praticon.github.io), which
 // this project site does not control, so submit the sitemap in Search Console instead.
