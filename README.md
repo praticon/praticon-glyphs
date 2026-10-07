@@ -15,7 +15,8 @@ Browse and copy the icons at **[praticon.github.io/praticon-glyphs](https://prat
 npm i @praticon-glyphs/react    # React 18+
 npm i @praticon-glyphs/vue      # Vue 3.3+
 npm i @praticon-glyphs/svelte   # Svelte 5+
-npm i @praticon-glyphs/core     # SVG files and toSvg() for anything else
+npm i @praticon-glyphs/elements # Web Components, for any other framework or plain HTML
+npm i @praticon-glyphs/core     # SVG files, sprite, icon font and toSvg()
 ```
 
 ## Usage
@@ -68,6 +69,19 @@ The props, defaults and accessibility rules are the same as in React. Put a `<ti
 
 The package needs Svelte 5. Children such as a `<title>` render inside the `<svg>`, and the `Icon` component draws your own icons with the same props.
 
+### Web Components
+
+```html
+<script type="module">
+  import "@praticon-glyphs/elements"; // registers <praticon-…> for every icon
+</script>
+
+<praticon-arrow-left></praticon-arrow-left>
+<praticon-terminal size="32" stroke-width="1.5" color="#5b21b6" aria-label="Open terminal"></praticon-terminal>
+```
+
+Import `@praticon-glyphs/elements/icons/<name>` instead to register, and bundle, only the icons you use. Without a build step, load `https://cdn.jsdelivr.net/npm/@praticon-glyphs/elements/+esm`.
+
 ### Without a framework
 
 `@praticon-glyphs/core` ships the optimised SVG files, the icon data and metadata:
@@ -82,6 +96,19 @@ As with the components, `toSvg` output is decorative (`aria-hidden="true"`) unle
 
 The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 
+**SVG sprite.** `@praticon-glyphs/core/sprite.svg` has a `<symbol>` per icon. Serve it from your own origin and set the size and stroke on the outer `<svg>`:
+
+```html
+<svg width="24" height="24" stroke-width="2" aria-hidden="true"><use href="/sprite.svg#arrow-left" /></svg>
+```
+
+**Icon font.** `@praticon-glyphs/core/font/praticon.css` loads a WOFF2 font with a class per icon. Size it with `font-size` and colour it with `color`; the stroke is fixed at the standard width:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@praticon-glyphs/core/font/praticon.css" />
+<i class="praticon praticon-arrow-left" aria-hidden="true"></i>
+```
+
 ## Packages
 
 | Package | Description |
@@ -89,7 +116,8 @@ The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 | [`@praticon-glyphs/react`](packages/react) | React components |
 | [`@praticon-glyphs/vue`](packages/vue) | Vue 3 components |
 | [`@praticon-glyphs/svelte`](packages/svelte) | Svelte 5 components |
-| [`@praticon-glyphs/core`](packages/core) | SVG files, icon data, metadata, `toSvg()` |
+| [`@praticon-glyphs/elements`](packages/elements) | Web Components |
+| [`@praticon-glyphs/core`](packages/core) | SVG files, SVG sprite, icon font, icon data, metadata, `toSvg()` |
 
 ## Contributing an icon
 

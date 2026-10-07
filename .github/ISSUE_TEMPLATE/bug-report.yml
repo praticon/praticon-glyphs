@@ -1,0 +1,35 @@
+name: Bug report
+description: Something wrong with an icon, a package or the site.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - An icon's drawing
+        - "@praticon-glyphs/react"
+        - "@praticon-glyphs/vue"
+        - "@praticon-glyphs/svelte"
+        - "@praticon-glyphs/core"
+        - The website
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: From your lockfile or `npm ls @praticon-glyphs/react`. Skip it for website problems.
+      placeholder: 0.2.0
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you saw instead. Name the icon if it's about one.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Code or steps to reproduce
+      render: tsx

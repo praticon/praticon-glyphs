@@ -7,7 +7,8 @@
       "@praticon-glyphs/core",
       "@praticon-glyphs/react",
       "@praticon-glyphs/vue",
-      "@praticon-glyphs/svelte"
+      "@praticon-glyphs/svelte",
+      "@praticon-glyphs/elements"
     ]
   ],
   "linked": [],

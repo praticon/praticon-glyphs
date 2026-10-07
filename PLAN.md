@@ -26,10 +26,10 @@ _Created: 2026-10-05_
 |---|---|---|
 | Name | **Praticon** | ✅ Decided |
 | npm org | [`praticon-glyphs`](https://www.npmjs.com/org/praticon-glyphs) (owner `kronos456`) | ✅ Created 2026-10-06 |
-| npm packages | `@praticon-glyphs/core`, `@praticon-glyphs/react`, `@praticon-glyphs/vue`, `@praticon-glyphs/svelte` | ✅ Scope owned |
+| npm packages | `@praticon-glyphs/core`, `@praticon-glyphs/react`, `@praticon-glyphs/vue`, `@praticon-glyphs/svelte`, `@praticon-glyphs/elements` | ✅ Scope owned |
 | GitHub repo | [`praticon/praticon-glyphs`](https://github.com/praticon/praticon-glyphs) (public) | ✅ Created |
 | GitHub org | [`praticon`](https://github.com/praticon) | ✅ Created 2026-10-05 |
-| Website (free, now) | `praticon.github.io/praticon-glyphs` | ⬜ Set up |
+| Website (free, now) | [`praticon.github.io/praticon-glyphs`](https://praticon.github.io/praticon-glyphs/) | ✅ Live 2026-10-06 |
 | Domain (paid, later) | `praticon.dev` (~$12/yr) | ⬜ Buy when selling |
 | Tagline | "Symbols, crafted." | Draft |
 | Trademark | Search IP India and USPTO for "Praticon" | ⬜ Check |
@@ -48,7 +48,7 @@ _Created: 2026-10-05_
 | **Browser & web** | `browser`, `tab`, `link`, `globe`, `cookie`, `cache`, `devtools`, `inspect`, `console`, `network` |
 | **Layout & CSS** | `layout-grid`, `flex-row`, `flex-column`, `align-center`, `padding`, `margin`, `layers`, `breakpoint`, `typography`, `color-picker` |
 | **Responsive** | `desktop`, `laptop`, `tablet`, `mobile`, `viewport`, `rotate-device` |
-| **Version control** | `git-branch`, `git-commit`, `git-merge`, `pull-request`, `fork`, `diff`, `tag`, `conflict` |
+| **Version control** | `git-branch`, `git-commit`, `git-merge`, `pull-request`, `git-fork`, `diff`, `tag`, `conflict` |
 | **APIs & data** | `api`, `endpoint`, `webhook`, `json`, `database`, `query`, `request`, `response`, `websocket`, `schema` |
 | **Build & deploy** | `package`, `dependency`, `build`, `bundle`, `deploy`, `pipeline`, `server`, `cloud`, `container`, `env-variable` |
 | **Testing & debugging** | `bug`, `debug`, `breakpoint-dot`, `test`, `test-pass`, `test-fail`, `coverage`, `log` |
@@ -136,10 +136,10 @@ Every icon also gets an entry in `metadata.json`:
 | Language | TypeScript |
 | SVG optimisation | SVGO |
 | Code generation | Custom Node build script (SVG → components) |
-| Frameworks | React, Vue, Svelte |
-| Frameworks (later) | Web Components |
-| Docs / browser site | Vite + React (or Astro) |
-| Testing | Vitest (snapshots of generated components) |
+| Frameworks | React, Vue, Svelte, Web Components |
+| Other formats | SVG sprite, icon font (strokes outlined with Skia) |
+| Docs / browser site | Vite + React, pre-rendered with SSR |
+| Testing | Vitest (unit and snapshot tests), Playwright + axe (browser and accessibility tests) |
 | Versioning / release | Changesets |
 | CI / CD | GitHub Actions |
 | Hosting | GitHub Pages / js.org (free) |
@@ -154,16 +154,20 @@ Every icon also gets an entry in `metadata.json`:
 praticon-glyphs/
 ├── icons/                     # Source of truth: hand-drawn SVGs
 │   ├── outline/
-│   └── metadata.json
+│   ├── metadata.json
+│   └── codepoints.json        # Icon font character per icon, stable across releases
 ├── packages/
 │   ├── core/                  # Core: optimised SVGs + metadata (npm: @praticon-glyphs/core)
 │   ├── react/                 # @praticon-glyphs/react (generated)
 │   ├── vue/                   # @praticon-glyphs/vue (generated)
-│   └── svelte/                # @praticon-glyphs/svelte (generated)
+│   ├── svelte/                # @praticon-glyphs/svelte (generated)
+│   └── elements/              # @praticon-glyphs/elements: Web Components (generated)
 ├── scripts/
 │   ├── lint-icons.ts          # Enforce grid, stroke, currentColor, no fills
 │   ├── optimize.ts            # SVGO pass
-│   └── build-components.ts    # SVG → typed React, Vue and Svelte components
+│   ├── build-components.ts    # SVG → typed React, Vue, Svelte and Web Components
+│   ├── build-sprite.ts        # SVG sprite
+│   └── build-font.ts          # Icon font (codepoints kept in icons/codepoints.json)
 ├── site/                      # Icon browser (search, customise, copy)
 ├── templates/
 │   └── grid-24.svg            # Design template for Figma / Illustrator / Inkscape
@@ -208,7 +212,7 @@ Requirements:
 ### Phase 1: First 50 icons + pipeline (Weeks 2–4)
 - [x] Design 50 icons following the spec: Core UI + Code & editor + Browser & web
 - [x] `lint-icons` script that checks the design rules automatically
-- [x] `build-react` generator with tests
+- [x] Component generator with tests (`build-react`, now `build-components`)
 - [x] Publish `@praticon-glyphs/core@0.1.0` and `@praticon-glyphs/react@0.1.0` (published 2026-10-06)
 
 ### Phase 2: Icon browser site (Weeks 5–6)
@@ -222,6 +226,14 @@ Requirements:
 - [ ] Gather feedback from developers on missing icons
 - [x] Add Vue and Svelte packages
 - [x] GitHub Actions: lint, build, test, icon audit, and release with Changesets through npm trusted publishing
+- [x] Browser and accessibility tests (Playwright + axe, WCAG 2.1 AA) in CI
+- [x] Shareable links to a search, category and style
+- [x] Publish 0.2.0 of all four packages with 200 icons (published 2026-10-07)
+- [ ] Set up npm trusted publishing for `@praticon-glyphs/vue` and `@praticon-glyphs/svelte`
+- [ ] Verify the site in Google Search Console and submit `sitemap.xml`
+- [ ] Search IP India and USPTO for "Praticon" before launching
+- [x] "Request an icon" issue form, linked from the search results and the footer
+- [ ] Turn on GitHub Issues in the repo settings, with an `icon request` label
 - [ ] Launch the free set on Product Hunt, Reddit, X and Dev.to
 
 ### Phase 4: Praticon Pro (Months 4–6)
@@ -237,8 +249,8 @@ Requirements:
 - [ ] Figma plugin / Figma Community file
 - [ ] Animated icons (Pro)
 - [ ] CLI: `npx @praticon-glyphs/cli add arrow-left`
-- [ ] Web Components package
-- [ ] Icon font and SVG sprite outputs
+- [x] Web Components package (`@praticon-glyphs/elements`)
+- [x] Icon font and SVG sprite outputs
 
 ---
 
@@ -246,8 +258,8 @@ Requirements:
 
 | Milestone | Target |
 |---|---|
-| v0.1 published | 50 icons, React package live |
-| Free launch | 200 icons, site live, 100 GitHub stars |
+| v0.1 published | 50 icons, React package live ✅ |
+| Free launch | 200 icons ✅, site live ✅, 100 GitHub stars |
 | Pro launch | First paying customer |
 | 6 months | 500+ icons, 1k weekly npm downloads |
 
@@ -267,7 +279,7 @@ Requirements:
 
 ## 12. Open Decisions
 
-- [ ] Docs site: Vite + React or Astro?
+- [x] Docs site: Vite + React (decided)
 - [ ] Pro pricing per tier
 - [ ] Number of seats in the Team tier
 - [ ] Design tool: Figma, Illustrator or Inkscape

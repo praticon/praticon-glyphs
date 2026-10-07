@@ -21,6 +21,12 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Lint icons and build
         run: pnpm build
+      - name: Check every icon has a committed font codepoint
+        run: |
+          if [ -n "$(git status --porcelain icons/codepoints.json)" ]; then
+            echo "::error::New icons got font codepoints. Run pnpm build and commit icons/codepoints.json."
+            exit 1
+          fi
       - name: Typecheck
         run: pnpm typecheck
       - name: Test

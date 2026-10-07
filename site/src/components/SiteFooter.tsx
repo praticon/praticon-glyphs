@@ -1,8 +1,7 @@
 import type { MouseEvent } from "react";
 import { BracketsIcon } from "@praticon-glyphs/react";
+import { iconRequestUrl, REPO_URL } from "../links.ts";
 import { docsPath, type Route } from "../routes.ts";
-
-const REPO_URL = "https://github.com/praticon/praticon-glyphs";
 
 export function SiteFooter({ base, linkTo }: { base: string; linkTo: (route: Route) => (event: MouseEvent) => void }) {
   return (
@@ -29,12 +28,16 @@ export function SiteFooter({ base, linkTo }: { base: string; linkTo: (route: Rou
           <div>
             <p className="footer-heading">Packages</p>
             <a href="https://www.npmjs.com/package/@praticon-glyphs/react">@praticon-glyphs/react</a>
+            <a href="https://www.npmjs.com/package/@praticon-glyphs/vue">@praticon-glyphs/vue</a>
+            <a href="https://www.npmjs.com/package/@praticon-glyphs/svelte">@praticon-glyphs/svelte</a>
+            <a href="https://www.npmjs.com/package/@praticon-glyphs/elements">@praticon-glyphs/elements</a>
             <a href="https://www.npmjs.com/package/@praticon-glyphs/core">@praticon-glyphs/core</a>
           </div>
           <div>
             <p className="footer-heading">Project</p>
             <a href={REPO_URL}>GitHub</a>
             <a href={`${REPO_URL}/releases`}>Releases</a>
+            <a href={iconRequestUrl()}>Request an icon</a>
             <a href={`${REPO_URL}#contributing-an-icon`}>Contribute an icon</a>
           </div>
         </nav>

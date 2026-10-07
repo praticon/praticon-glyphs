@@ -10,6 +10,7 @@ import { IconGrid } from "./components/IconGrid.tsx";
 import { SiteFooter } from "./components/SiteFooter.tsx";
 import { SiteHeader } from "./components/SiteHeader.tsx";
 import { Toolbar, type Filter } from "./components/Toolbar.tsx";
+import { iconRequestUrl } from "./links.ts";
 import { usePersistentState } from "./persist.ts";
 import { SITE_URL, iconPath, parseRoute, pathFor, type Route } from "./routes.ts";
 import { searchIcons } from "./search.ts";
@@ -19,7 +20,6 @@ import { parseView, viewSearch, type View } from "./view-params.ts";
 
 export const BASE = import.meta.env.BASE_URL;
 const ICON_NAMES = new Set(metadata.map((icon) => icon.name));
-const REPO_URL = "https://github.com/praticon/praticon-glyphs";
 const INSTALL_COMMAND = "npm i @praticon-glyphs/react";
 
 /** The route for the current browser location. Only call this in the browser. */
@@ -263,7 +263,7 @@ export function App({ initialRoute }: { initialRoute: Route }) {
                     <SearchIcon size={32} aria-hidden="true" />
                     <p>
                       <strong>No icons match “{query}”.</strong> Try a broader word, or{" "}
-                      <a className="text-link" href={`${REPO_URL}/issues/new?title=${encodeURIComponent(`Icon request: ${query}`)}`}>
+                      <a className="text-link" href={iconRequestUrl(query)}>
                         request this icon
                       </a>
                       .

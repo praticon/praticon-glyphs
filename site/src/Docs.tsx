@@ -6,11 +6,14 @@ const SECTIONS = [
   ["react", "Use in React"],
   ["vue", "Use in Vue"],
   ["svelte", "Use in Svelte"],
+  ["web-components", "Web Components"],
   ["props", "Props"],
   ["imports", "Importing"],
   ["accessibility", "Accessibility"],
   ["styling", "Styling"],
   ["without-framework", "Without a framework"],
+  ["sprite", "SVG sprite"],
+  ["font", "Icon font"],
   ["typescript", "TypeScript"],
   ["custom-icons", "Your own icons"],
 ] as const;
@@ -69,7 +72,8 @@ export function Docs({ onCopy }: { onCopy: (text: string) => void }) {
         <h1>Getting started</h1>
         <p className="lede">
           Praticon icons are drawn on a 24 × 24 grid with a 2 px round stroke and inherit your text colour. Use them as
-          typed React, Vue or Svelte components, or as plain SVG anywhere else.
+          typed React, Vue or Svelte components, as Web Components, or as plain SVG, a sprite or an icon font anywhere
+          else.
         </p>
 
         <Section id="install" title="Install">
@@ -77,8 +81,10 @@ export function Docs({ onCopy }: { onCopy: (text: string) => void }) {
           {code("npm i @praticon-glyphs/react")}
           {code("npm i @praticon-glyphs/vue")}
           {code("npm i @praticon-glyphs/svelte")}
+          <p>For any other framework, or plain HTML, the Web Components package works everywhere:</p>
+          {code("npm i @praticon-glyphs/elements")}
           <p>
-            For plain HTML, server templates or other frameworks, use the core package, which ships the SVG files, the
+            For server templates and static sites, the core package ships the SVG files, an SVG sprite, an icon font, the
             icon data and a <code>toSvg()</code> helper:
           </p>
           {code("npm i @praticon-glyphs/core")}
@@ -143,6 +149,34 @@ import { ArrowLeft, Terminal } from "@praticon-glyphs/vue";
 </script>
 
 <Icon name="rocket" node={[["path", { d: "M12 15l-3-3a12 12 0 0 1 9-9" }]]} />`)}
+        </Section>
+
+        <Section id="web-components" title="Web Components">
+          <p>
+            Every icon is also a custom element named <code>praticon-&lt;name&gt;</code>, which works in Angular, Solid,
+            Lit, server-rendered pages or plain HTML. Importing the package registers all of them:
+          </p>
+          {code(`<script type="module">
+  import "@praticon-glyphs/elements";
+</script>
+
+<button aria-label="Back">
+  <praticon-arrow-left></praticon-arrow-left>
+</button>
+<praticon-terminal size="32" stroke-width="1.5" color="#5b21b6"></praticon-terminal>`)}
+          <p>Without a build step, load it from a CDN:</p>
+          {code(`<script type="module" src="https://cdn.jsdelivr.net/npm/@praticon-glyphs/elements/+esm"></script>`)}
+          <p>
+            To bundle only the icons you use, import each one from its own module instead. Importing it registers its
+            tag:
+          </p>
+          {code(`import "@praticon-glyphs/elements/icons/arrow-left";`)}
+          <p>
+            The attributes are <code>size</code>, <code>color</code> and <code>stroke-width</code>, with the same
+            defaults as the props below, and the elements have matching <code>size</code>, <code>color</code> and{" "}
+            <code>strokeWidth</code> properties. The SVG is drawn in a shadow root; style it from outside with{" "}
+            <code>::part(svg)</code>. Wrap your own icons with <code>defineIcon(name, node)</code>.
+          </p>
         </Section>
 
         <Section id="props" title="Props">
@@ -257,9 +291,41 @@ document.querySelector("#back").innerHTML = toSvg("arrow-left", {
           </p>
         </Section>
 
+        <Section id="sprite" title="SVG sprite">
+          <p>
+            <code>@praticon-glyphs/core/sprite.svg</code> holds every icon as a <code>&lt;symbol&gt;</code> named after
+            the icon. Serve the file from your own site, then point a <code>&lt;use&gt;</code> at an icon. The browser
+            downloads the sprite once and caches it:
+          </p>
+          {code(`<svg width="24" height="24" stroke-width="2" aria-hidden="true">
+  <use href="/sprite.svg#arrow-left" />
+</svg>`)}
+          <p>
+            Set the size and stroke width on the outer <code>&lt;svg&gt;</code>; the icon follows the text colour.
+            Browsers only load sprites from the same origin as the page, so copy the file into your public folder rather
+            than linking to a CDN.
+          </p>
+        </Section>
+
+        <Section id="font" title="Icon font">
+          <p>
+            For places that only take text or CSS, such as CMS templates or older stacks, the icon font draws every icon
+            as a character. Load its stylesheet, then use the <code>praticon</code> class with the icon's class:
+          </p>
+          {code(`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@praticon-glyphs/core/font/praticon.css" />
+
+<i class="praticon praticon-arrow-left" aria-hidden="true"></i>`)}
+          <p>
+            Icons are sized with <code>font-size</code> and coloured with <code>color</code>, and sit on the text baseline.
+            A font cannot change its stroke width, so it is always the standard one: 2 px at 24 px, scaling with the
+            size. Each icon keeps its
+            character between releases; <code>font/codepoints.json</code> lists them.
+          </p>
+        </Section>
+
         <Section id="typescript" title="TypeScript">
           <p>
-            Both packages ship their own types. <code>IconName</code> is a union of every icon name, so typos are caught at
+            Every package ships its own types. <code>IconName</code> is a union of every icon name, so typos are caught at
             compile time:
           </p>
           {code(`import { toSvg, type IconName } from "@praticon-glyphs/core";

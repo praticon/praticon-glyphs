@@ -14,6 +14,7 @@ export const CORE_DIR = join(ROOT, "packages", "core");
 export const REACT_DIR = join(ROOT, "packages", "react");
 export const VUE_DIR = join(ROOT, "packages", "vue");
 export const SVELTE_DIR = join(ROOT, "packages", "svelte");
+export const ELEMENTS_DIR = join(ROOT, "packages", "elements");
 
 export type Attrs = Record<string, string>;
 
