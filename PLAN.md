@@ -26,7 +26,7 @@ _Created: 2026-10-05_
 |---|---|---|
 | Name | **Praticon** | ✅ Decided |
 | npm org | [`praticon-glyphs`](https://www.npmjs.com/org/praticon-glyphs) (owner `kronos456`) | ✅ Created 2026-10-06 |
-| npm packages | `@praticon-glyphs/core`, `@praticon-glyphs/react`, `@praticon-glyphs/vue`, `@praticon-glyphs/svelte` | ✅ Scope owned |
+| npm packages | `@praticon-glyphs/core`, `@praticon-glyphs/react`, `@praticon-glyphs/vue`, `@praticon-glyphs/svelte`, `@praticon-glyphs/elements` | ✅ Scope owned |
 | GitHub repo | [`praticon/praticon-glyphs`](https://github.com/praticon/praticon-glyphs) (public) | ✅ Created |
 | GitHub org | [`praticon`](https://github.com/praticon) | ✅ Created 2026-10-05 |
 | Website (free, now) | [`praticon.github.io/praticon-glyphs`](https://praticon.github.io/praticon-glyphs/) | ✅ Live 2026-10-06 |
@@ -136,8 +136,8 @@ Every icon also gets an entry in `metadata.json`:
 | Language | TypeScript |
 | SVG optimisation | SVGO |
 | Code generation | Custom Node build script (SVG → components) |
-| Frameworks | React, Vue, Svelte |
-| Frameworks (later) | Web Components |
+| Frameworks | React, Vue, Svelte, Web Components |
+| Other formats | SVG sprite, icon font (strokes outlined with Skia) |
 | Docs / browser site | Vite + React, pre-rendered with SSR |
 | Testing | Vitest (unit and snapshot tests), Playwright + axe (browser and accessibility tests) |
 | Versioning / release | Changesets |
@@ -154,16 +154,20 @@ Every icon also gets an entry in `metadata.json`:
 praticon-glyphs/
 ├── icons/                     # Source of truth: hand-drawn SVGs
 │   ├── outline/
-│   └── metadata.json
+│   ├── metadata.json
+│   └── codepoints.json        # Icon font character per icon, stable across releases
 ├── packages/
 │   ├── core/                  # Core: optimised SVGs + metadata (npm: @praticon-glyphs/core)
 │   ├── react/                 # @praticon-glyphs/react (generated)
 │   ├── vue/                   # @praticon-glyphs/vue (generated)
-│   └── svelte/                # @praticon-glyphs/svelte (generated)
+│   ├── svelte/                # @praticon-glyphs/svelte (generated)
+│   └── elements/              # @praticon-glyphs/elements: Web Components (generated)
 ├── scripts/
 │   ├── lint-icons.ts          # Enforce grid, stroke, currentColor, no fills
 │   ├── optimize.ts            # SVGO pass
-│   └── build-components.ts    # SVG → typed React, Vue and Svelte components
+│   ├── build-components.ts    # SVG → typed React, Vue, Svelte and Web Components
+│   ├── build-sprite.ts        # SVG sprite
+│   └── build-font.ts          # Icon font (codepoints kept in icons/codepoints.json)
 ├── site/                      # Icon browser (search, customise, copy)
 ├── templates/
 │   └── grid-24.svg            # Design template for Figma / Illustrator / Inkscape
@@ -245,8 +249,8 @@ Requirements:
 - [ ] Figma plugin / Figma Community file
 - [ ] Animated icons (Pro)
 - [ ] CLI: `npx @praticon-glyphs/cli add arrow-left`
-- [ ] Web Components package
-- [ ] Icon font and SVG sprite outputs
+- [x] Web Components package (`@praticon-glyphs/elements`)
+- [x] Icon font and SVG sprite outputs
 
 ---
 

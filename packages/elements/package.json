@@ -1,19 +1,19 @@
 {
-  "name": "@praticon-glyphs/core",
+  "name": "@praticon-glyphs/elements",
   "version": "0.2.0",
-  "description": "Praticon icons as optimised SVG files, an SVG sprite, an icon font, icon data and metadata. Crafted, grid-based icons for web development.",
+  "description": "Praticon icons as Web Components that work in any framework or plain HTML. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
   "homepage": "https://praticon.github.io/praticon-glyphs/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/praticon/praticon-glyphs.git",
-    "directory": "packages/core"
+    "directory": "packages/elements"
   },
   "bugs": "https://github.com/praticon/praticon-glyphs/issues",
-  "keywords": ["icons", "svg", "icon-set", "svg-sprite", "icon-font", "web-development", "praticon"],
+  "keywords": ["icons", "web-components", "custom-elements", "svg", "web-development", "praticon"],
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": ["./dist/index.js", "./dist/icons/*.js"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -21,13 +21,13 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./svg/*": "./svg/*",
-    "./sprite.svg": "./sprite.svg",
-    "./font/*": "./font/*",
-    "./metadata.json": "./metadata.json",
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "default": "./dist/icons/*.js"
+    },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "svg", "sprite.svg", "font", "metadata.json"],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public"
   },

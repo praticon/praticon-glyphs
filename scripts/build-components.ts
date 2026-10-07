@@ -4,11 +4,13 @@
  *   packages/react/src/icons/<name>.ts   and index.ts
  *   packages/vue/src/icons/<name>.ts     and index.ts
  *   packages/svelte/src/icons/<name>.svelte and index.ts
+ *   packages/elements/src/icons/<name>.ts and index.ts
  */
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   CORE_DIR,
+  ELEMENTS_DIR,
   GENERATED_HEADER,
   REACT_DIR,
   SVELTE_DIR,
@@ -92,4 +94,22 @@ for (const packageDir of [REACT_DIR, VUE_DIR]) {
   writeFileSync(join(dir, "index.ts"), `${header}${barrel.join("\n")}\n`);
 }
 
-console.log(`✔ generated ${icons.length} React, Vue and Svelte components`);
+// Each Web Component module registers its <praticon-name> tag when imported.
+{
+  const dir = resetDir(ELEMENTS_DIR);
+  for (const { name, component, tags, children } of icons) {
+    writeFileSync(
+      join(dir, `${name}.ts`),
+      `${header}import { defineIcon } from "../define-icon.js";\n\n` +
+        docComment(name, tags) +
+        `const ${component}Icon = defineIcon(${JSON.stringify(name)}, [\n${nodeSource(children, "  ")}\n]);\n\n` +
+        `declare global {\n  interface HTMLElementTagNameMap {\n    ${JSON.stringify(`praticon-${name}`)}: InstanceType<typeof ${component}Icon>;\n  }\n}\n\n` +
+        `export { ${component}Icon as ${component}, ${component}Icon };\n` +
+        `export default ${component}Icon;\n`,
+    );
+  }
+  const barrel = icons.map(({ name, component }) => `export { ${component}, ${component}Icon } from "./${name}.js";`);
+  writeFileSync(join(dir, "index.ts"), `${header}${barrel.join("\n")}\n`);
+}
+
+console.log(`✔ generated ${icons.length} React, Vue, Svelte and Web Components`);

@@ -30,6 +30,7 @@ export function SiteFooter({ base, linkTo }: { base: string; linkTo: (route: Rou
             <a href="https://www.npmjs.com/package/@praticon-glyphs/react">@praticon-glyphs/react</a>
             <a href="https://www.npmjs.com/package/@praticon-glyphs/vue">@praticon-glyphs/vue</a>
             <a href="https://www.npmjs.com/package/@praticon-glyphs/svelte">@praticon-glyphs/svelte</a>
+            <a href="https://www.npmjs.com/package/@praticon-glyphs/elements">@praticon-glyphs/elements</a>
             <a href="https://www.npmjs.com/package/@praticon-glyphs/core">@praticon-glyphs/core</a>
           </div>
           <div>
