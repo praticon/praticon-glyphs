@@ -1,6 +1,6 @@
 {
   "name": "@praticon-glyphs/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Praticon icons as optimised SVG files, an SVG sprite, an icon font, icon data and metadata. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
