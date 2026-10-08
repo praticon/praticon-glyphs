@@ -1,5 +1,5 @@
 /**
- * Enforces the Praticon design spec (PLAN.md §4) on icons/outline/*.svg
+ * Enforces the Praticon design spec on icons/outline/*.svg
  * and keeps icons/metadata.json in sync with the files.
  */
 import { readFileSync } from "node:fs";
