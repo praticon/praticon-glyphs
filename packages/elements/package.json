@@ -1,6 +1,6 @@
 {
   "name": "@praticon-glyphs/elements",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Praticon icons as Web Components that work in any framework or plain HTML. Crafted, grid-based icons for web development.",
   "license": "MIT",
   "author": "kronos456",
