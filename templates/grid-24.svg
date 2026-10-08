@@ -1,8 +1,9 @@
 <!--
   Praticon 24×24 design template.
   Import into Figma, Illustrator or Inkscape, lock this layer, and draw on top.
-  Rules (PLAN.md §4): 2px round stroke, no fills, stay inside the 20×20 live
-  area, and use the keyline shapes to keep visual weight consistent.
+  Rules (checked by pnpm lint:icons): 2px round stroke, no fills, stay inside
+  the 20×20 live area, and use the keyline shapes to keep visual weight
+  consistent.
   This file is a design aid, not an icon: it is not linted or published.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 24 24">
