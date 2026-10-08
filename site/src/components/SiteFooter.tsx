@@ -38,7 +38,6 @@ export function SiteFooter({ base, linkTo }: { base: string; linkTo: (route: Rou
             <a href={REPO_URL}>GitHub</a>
             <a href={`${REPO_URL}/releases`}>Releases</a>
             <a href={iconRequestUrl()}>Request an icon</a>
-            <a href={`${REPO_URL}#contributing-an-icon`}>Contribute an icon</a>
           </div>
         </nav>
       </div>

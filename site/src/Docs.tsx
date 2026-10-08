@@ -346,13 +346,6 @@ export const Rocket = createIcon("rocket", [
   ["path", { d: "M12 15l-3-3a12 12 0 0 1 9-9 12 12 0 0 1-9 9" }],
   ["path", { d: "M9 12H4l3-5h5" }],
 ]);`)}
-          <p>
-            To add an icon to Praticon itself, see{" "}
-            <a className="text-link" href="https://github.com/praticon/praticon-glyphs#contributing-an-icon">
-              contributing an icon
-            </a>
-            .
-          </p>
         </Section>
       </article>
     </main>
