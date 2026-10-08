@@ -74,7 +74,7 @@ const font = new opentype.Font({
   glyphs,
   version,
   description: "Crafted, grid-based icons for web development.",
-  copyright: "Copyright (c) Praticon contributors",
+  copyright: "Copyright (c) 2026 Praticon",
   license: "MIT",
   licenseURL: "https://github.com/praticon/praticon-glyphs/blob/main/LICENSE",
   manufacturerURL: "https://praticon.github.io/praticon-glyphs/",

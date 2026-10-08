@@ -119,19 +119,11 @@ The raw files are at `@praticon-glyphs/core/svg/<name>.svg`.
 | [`@praticon-glyphs/elements`](packages/elements) | Web Components |
 | [`@praticon-glyphs/core`](packages/core) | SVG files, SVG sprite, icon font, icon data, metadata, `toSvg()` |
 
-## Contributing an icon
+## Contributions
 
-1. Draw it on [`templates/grid-24.svg`](templates/grid-24.svg) and follow the design spec in [PLAN.md §4](PLAN.md#4-design-specification).
-2. Save it as `icons/outline/<name>.svg` (kebab-case, noun first) with the standard root:
-   ```svg
-   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-   ```
-   Children may only be `path`, `circle`, `ellipse`, `rect`, `line`, `polyline` or `polygon`, with geometry attributes only.
-3. Add an entry to `icons/metadata.json`.
-4. Run `pnpm build && pnpm test`. The linter checks the spec, and new snapshots show the generated component.
-5. Run `pnpm audit:icons <name>` and make sure the icon is not a near copy of another library's (score below 0.8 unless it is a universal shape like a chevron).
+Praticon is designed and maintained by one person, so pull requests are not accepted. You can still [request an icon](https://github.com/praticon/praticon-glyphs/issues/new?template=icon-request.yml) or [report a bug](https://github.com/praticon/praticon-glyphs/issues/new?template=bug-report.yml).
 
-### Development
+## Development
 
 Requires Node 24 or later, the version `.nvmrc` pins and CI uses. Run `nvm use` (or fnm or Volta) to switch to it.
 
